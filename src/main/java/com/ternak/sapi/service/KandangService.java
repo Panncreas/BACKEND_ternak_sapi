@@ -1,0 +1,143 @@
+package com.ternak.sapi.service;
+
+import com.ternak.sapi.exception.BadRequestException;
+import com.ternak.sapi.exception.ResourceNotFoundException;
+import com.ternak.sapi.model.Kandang;
+import com.ternak.sapi.payload.PagedResponse;
+import com.ternak.sapi.payload.kandang.KandangRequest;
+import com.ternak.sapi.payload.kandang.KandangResponse;
+import com.ternak.sapi.security.UserPrincipal;
+import com.ternak.sapi.util.AppConstants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import com.ternak.sapi.repository.KandangRepository;
+
+@Service
+public class KandangService {
+    @Autowired
+    private KandangRepository kandangRepository;
+
+    private static final Logger logger = LoggerFactory.getLogger(KandangService.class);
+
+    public PagedResponse<KandangResponse> getAllKandang(int page, int size) {
+        validatePageNumberAndSize(page, size);
+
+        // Retrieve Polls
+        Pageable pageable = PageRequest.of(page, size, Sort.Direction.DESC, "createdAt");
+        Page<Kandang> kandang = kandangRepository.findAll(pageable);
+
+        if(kandang.getNumberOfElements() == 0) {
+            return new PagedResponse<>(Collections.emptyList(), kandang.getNumber(),
+                    kandang.getSize(), kandang.getTotalElements(), kandang.getTotalPages(), kandang.isLast(), 200);
+        }
+
+        // Map Polls to PollResponses containing vote counts and poll creator details
+        List<KandangResponse> kandangResponses = kandang.map(asResponse -> {
+            KandangResponse kandangResponse = new KandangResponse();
+            kandangResponse.setIdKandang(asResponse.getIdKandang());
+            kandangResponse.setIdPeternak(asResponse.getIdPeternak());
+            kandangResponse.setNamaPeternak(asResponse.getNamaPeternak());
+            kandangResponse.setLuas(asResponse.getLuas());
+            kandangResponse.setKapasitas(asResponse.getKapasitas());
+            kandangResponse.setNilaiBangunan(asResponse.getNilaiBangunan());
+            kandangResponse.setAlamat(asResponse.getAlamat());
+            kandangResponse.setDesa(asResponse.getDesa());
+            kandangResponse.setKecamatan(asResponse.getKecamatan());
+            kandangResponse.setKabupaten(asResponse.getKabupaten());
+            kandangResponse.setProvinsi(asResponse.getProvinsi());
+            kandangResponse.setCreatedAt(asResponse.getCreatedAt());
+            kandangResponse.setUpdatedAt(asResponse.getUpdatedAt());
+            return kandangResponse;
+        }).getContent();
+
+        return new PagedResponse<>(kandangResponses, kandang.getNumber(),
+                kandang.getSize(), kandang.getTotalElements(), kandang.getTotalPages(), kandang.isLast(), 200);
+    }
+
+    public Kandang createKandang(UserPrincipal currentUser, KandangRequest kandangRequest) {
+        Kandang kandang = new Kandang();
+        kandang.setIdKandang(kandangRequest.getIdKandang());
+        kandang.setIdPeternak(kandangRequest.getIdPeternak());
+        kandang.setNamaPeternak(kandangRequest.getNamaPeternak());
+        kandang.setLuas(kandangRequest.getLuas());
+        kandang.setKapasitas(kandangRequest.getKapasitas());
+        kandang.setNilaiBangunan(kandangRequest.getNilaiBangunan());
+        kandang.setAlamat(kandangRequest.getAlamat());
+        kandang.setDesa(kandangRequest.getDesa());
+        kandang.setKecamatan(kandangRequest.getKecamatan());
+        kandang.setKabupaten(kandangRequest.getKabupaten());
+        kandang.setProvinsi(kandangRequest.getProvinsi());
+        kandang.setCreatedBy(currentUser.getId());
+        kandang.setUpdatedBy(currentUser.getId());
+        return kandangRepository.save(kandang);
+    }
+
+    public KandangResponse getKandangById(String kandangId) {
+        Kandang kandang = kandangRepository.findById(kandangId).orElseThrow(
+                () -> new ResourceNotFoundException("Kandang", "id", kandangId));
+
+        KandangResponse kandangResponse = new KandangResponse();
+        kandangResponse.setIdKandang(kandang.getIdKandang());
+        kandangResponse.setIdPeternak(kandang.getIdPeternak());
+        kandangResponse.setNamaPeternak(kandang.getNamaPeternak());
+        kandangResponse.setLuas(kandang.getLuas());
+        kandangResponse.setKapasitas(kandang.getKapasitas());
+        kandangResponse.setNilaiBangunan(kandang.getNilaiBangunan());
+        kandangResponse.setAlamat(kandang.getAlamat());
+        kandangResponse.setDesa(kandang.getDesa());
+        kandangResponse.setKecamatan(kandang.getKecamatan());
+        kandangResponse.setKabupaten(kandang.getKabupaten());
+        kandangResponse.setProvinsi(kandang.getProvinsi());
+        kandangResponse.setCreatedAt(kandang.getCreatedAt());
+        kandangResponse.setUpdatedAt(kandang.getUpdatedAt());
+        return kandangResponse;
+    }
+
+    private void validatePageNumberAndSize(int page, int size) {
+        if(page < 0) {
+            throw new BadRequestException("Page number cannot be less than zero.");
+        }
+
+        if(size > AppConstants.MAX_PAGE_SIZE) {
+            throw new BadRequestException("Page size must not be greater than " + AppConstants.MAX_PAGE_SIZE);
+        }
+    }
+
+    public Kandang updateKandang(KandangRequest kandangReq, String id, UserPrincipal currentUser){
+        return kandangRepository.findById(id).map(kandang -> {
+            kandang.setIdKandang(kandangReq.getIdKandang());
+            kandang.setIdPeternak(kandangReq.getIdPeternak());
+            kandang.setNamaPeternak(kandangReq.getNamaPeternak());
+            kandang.setLuas(kandangReq.getLuas());
+            kandang.setKapasitas(kandangReq.getKapasitas());
+            kandang.setNilaiBangunan(kandangReq.getNilaiBangunan());
+            kandang.setAlamat(kandangReq.getAlamat());
+            kandang.setDesa(kandangReq.getDesa());
+            kandang.setKecamatan(kandangReq.getKecamatan());
+            kandang.setKabupaten(kandangReq.getKabupaten());
+            kandang.setProvinsi(kandangReq.getProvinsi());
+            kandang.setCreatedBy(currentUser.getId());
+            kandang.setUpdatedBy(currentUser.getId());
+            return kandangRepository.save(kandang);
+        }).orElseThrow(() -> new ResourceNotFoundException("Kandang" , "id" , id));
+    }
+
+    public void deleteKandangById(String id){
+        Optional<Kandang> kandang = kandangRepository.findById(id);
+        if(kandang.isPresent()){
+            kandangRepository.deleteById(id);
+        }else{
+            throw new ResourceNotFoundException("Kandang", "id", id);
+        }
+    }
+}
