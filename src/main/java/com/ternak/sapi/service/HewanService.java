@@ -84,8 +84,8 @@ public class HewanService {
         String filePath = FOLDER_PATH + randomName;
         File destFile = new File(FOLDER_PATH, randomName);
         
-        hewan.setNoKartuTernak(hewanRequest.getNoKartuTernak());
         hewan.setKodeEartagNasional(hewanRequest.getKodeEartagNasional());
+        hewan.setNoKartuTernak(hewanRequest.getNoKartuTernak());
         hewan.setProvinsi(hewanRequest.getProvinsi());
         hewan.setKabupaten(hewanRequest.getKabupaten());
         hewan.setKecamatan(hewanRequest.getKecamatan());

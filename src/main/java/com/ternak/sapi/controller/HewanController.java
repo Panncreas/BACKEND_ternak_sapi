@@ -52,6 +52,7 @@ public class HewanController {
 public ResponseEntity<?> createHewan(
         @CurrentUser UserPrincipal currentUser,
         @RequestParam("kodeEartagNasional") String kodeEartagNasional,
+        @RequestParam("noKartuTernak") String noKartuTernak,
         @RequestParam("provinsi") String provinsi,
         @RequestParam("kabupaten") String kabupaten,
         @RequestParam("kecamatan") String kecamatan,
@@ -91,6 +92,7 @@ public ResponseEntity<?> updateHewanById(
         @CurrentUser UserPrincipal currentUser,
         @PathVariable(value = "hewanId") String hewanId,
         @RequestParam("kodeEartagNasional") String kodeEartagNasional,
+        @RequestParam("noKartuTernak") String noKartuTernak,
         @RequestParam("provinsi") String provinsi,
         @RequestParam("kabupaten") String kabupaten,
         @RequestParam("kecamatan") String kecamatan,
