@@ -1,6 +1,7 @@
 package com.ternak.sapi.payload.inseminasi;
 
 
+import com.ternak.sapi.model.Peternak;
 import java.time.Instant;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
@@ -10,8 +11,7 @@ public class InseminasiResponse {
     private String idInseminasi;
     private String tanggalIB;
     private String lokasi;
-    private String namaPeternak;
-    private String idPeternak;
+    private Peternak idPeternak;
     private String idHewan;
     private String eartag;
     private String ib1;
@@ -28,15 +28,11 @@ public class InseminasiResponse {
     
     public InseminasiResponse() {
     }
-    
-    public InseminasiResponse(String idInseminasi, String tanggalIB, String lokasi, String namaPeternak, String idPeternak,
-            String idHewan, String eartag, String ib1, String ib2, String ib3, String ibLain, String idPejantan, String idPembuatan, String bangsaPejantan, 
-            String produsen, String inseminator) {
-        
+
+    public InseminasiResponse(String idInseminasi, String tanggalIB, String lokasi, Peternak idPeternak, String idHewan, String eartag, String ib1, String ib2, String ib3, String ibLain, String idPejantan, String idPembuatan, String bangsaPejantan, String produsen, String inseminator) {
         this.idInseminasi = idInseminasi;
         this.tanggalIB = tanggalIB;
         this.lokasi = lokasi;
-        this.namaPeternak = namaPeternak;
         this.idPeternak = idPeternak;
         this.idHewan = idHewan;
         this.eartag = eartag;
@@ -50,7 +46,7 @@ public class InseminasiResponse {
         this.produsen = produsen;
         this.inseminator = inseminator;
     }
-
+    
     public String getIdInseminasi() {
         return idInseminasi;
     }
@@ -75,19 +71,11 @@ public class InseminasiResponse {
         this.lokasi = lokasi;
     }
 
-    public String getNamaPeternak() {
-        return namaPeternak;
-    }
-
-    public void setNamaPeternak(String namaPeternak) {
-        this.namaPeternak = namaPeternak;
-    }
-
-    public String getIdPeternak() {
+    public Peternak getIdPeternak() {
         return idPeternak;
     }
 
-    public void setIdPeternak(String idPeternak) {
+    public void setIdPeternak(Peternak idPeternak) {
         this.idPeternak = idPeternak;
     }
 

@@ -47,9 +47,7 @@ public class PkbService {
             pkbResponse.setIdKejadian(asResponse.getIdKejadian());
             pkbResponse.setTanggalPkb(asResponse.getTanggalPkb());
             pkbResponse.setLokasi(asResponse.getLokasi());
-            pkbResponse.setNamaPeternak(asResponse.getNamaPeternak());
             pkbResponse.setIdPeternak(asResponse.getIdPeternak());
-            pkbResponse.setNikPeternak(asResponse.getNikPeternak());
             pkbResponse.setIdHewan(asResponse.getIdHewan());
             pkbResponse.setSpesies(asResponse.getSpesies());
             pkbResponse.setKategori(asResponse.getKategori());
@@ -70,9 +68,7 @@ public class PkbService {
         pkb.setIdKejadian(pkbRequest.getIdKejadian());
         pkb.setTanggalPkb(pkbRequest.getTanggalPkb());
         pkb.setLokasi(pkbRequest.getLokasi());
-        pkb.setNamaPeternak(pkbRequest.getNamaPeternak());
         pkb.setIdPeternak(pkbRequest.getIdPeternak());
-        pkb.setNikPeternak(pkbRequest.getNikPeternak());
         pkb.setIdHewan(pkbRequest.getIdHewan());
         pkb.setSpesies(pkbRequest.getSpesies());
         pkb.setKategori(pkbRequest.getKategori());
@@ -92,9 +88,7 @@ public class PkbService {
         pkbResponse.setIdKejadian(pkb.getIdKejadian());
         pkbResponse.setTanggalPkb(pkb.getTanggalPkb());
         pkbResponse.setLokasi(pkb.getLokasi());
-        pkbResponse.setNamaPeternak(pkb.getNamaPeternak());
         pkbResponse.setIdPeternak(pkb.getIdPeternak());
-        pkbResponse.setNikPeternak(pkb.getNikPeternak());
         pkbResponse.setIdHewan(pkb.getIdHewan());
         pkbResponse.setSpesies(pkb.getSpesies());
         pkbResponse.setKategori(pkb.getKategori());
@@ -121,9 +115,7 @@ public class PkbService {
             pkb.setIdKejadian(pkbReq.getIdKejadian());
             pkb.setTanggalPkb(pkbReq.getTanggalPkb());
             pkb.setLokasi(pkbReq.getLokasi());
-            pkb.setNamaPeternak(pkbReq.getNamaPeternak());
             pkb.setIdPeternak(pkbReq.getIdPeternak());
-            pkb.setNikPeternak(pkbReq.getNikPeternak());
             pkb.setIdHewan(pkbReq.getIdHewan());
             pkb.setSpesies(pkbReq.getSpesies());
             pkb.setKategori(pkbReq.getKategori());

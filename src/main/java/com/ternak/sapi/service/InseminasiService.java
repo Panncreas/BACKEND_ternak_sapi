@@ -47,7 +47,6 @@ public class InseminasiService {
             inseminasiResponse.setIdInseminasi(asResponse.getIdInseminasi());
             inseminasiResponse.setTanggalIB(asResponse.getTanggalIB());
             inseminasiResponse.setLokasi(asResponse.getLokasi());
-            inseminasiResponse.setNamaPeternak(asResponse.getNamaPeternak());
             inseminasiResponse.setIdPeternak(asResponse.getIdPeternak());
             inseminasiResponse.setIdHewan(asResponse.getIdHewan());
             inseminasiResponse.setEartag(asResponse.getEartag());
@@ -74,7 +73,6 @@ public class InseminasiService {
         inseminasi.setIdInseminasi(inseminasiRequest.getIdInseminasi());
         inseminasi.setTanggalIB(inseminasiRequest.getTanggalIB());
         inseminasi.setLokasi(inseminasiRequest.getLokasi());
-        inseminasi.setNamaPeternak(inseminasiRequest.getNamaPeternak());
         inseminasi.setIdPeternak(inseminasiRequest.getIdPeternak());
         inseminasi.setIdHewan(inseminasiRequest.getIdHewan());
         inseminasi.setEartag(inseminasiRequest.getEartag());
@@ -100,7 +98,6 @@ public class InseminasiService {
         inseminasiResponse.setIdInseminasi(inseminasi.getIdInseminasi());
         inseminasiResponse.setTanggalIB(inseminasi.getTanggalIB());
         inseminasiResponse.setLokasi(inseminasi.getLokasi());
-        inseminasiResponse.setNamaPeternak(inseminasi.getNamaPeternak());
         inseminasiResponse.setIdPeternak(inseminasi.getIdPeternak());
         inseminasiResponse.setIdHewan(inseminasi.getIdHewan());
         inseminasiResponse.setEartag(inseminasi.getEartag());
@@ -133,7 +130,6 @@ public class InseminasiService {
             inseminasi.setIdInseminasi(inseminasiReq.getIdInseminasi());
             inseminasi.setTanggalIB(inseminasiReq.getTanggalIB());
             inseminasi.setLokasi(inseminasiReq.getLokasi());
-            inseminasi.setNamaPeternak(inseminasiReq.getNamaPeternak());
             inseminasi.setIdPeternak(inseminasiReq.getIdPeternak());
             inseminasi.setIdHewan(inseminasiReq.getIdHewan());
             inseminasi.setEartag(inseminasiReq.getEartag());

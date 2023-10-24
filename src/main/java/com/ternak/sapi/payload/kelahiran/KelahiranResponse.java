@@ -1,6 +1,7 @@
 package com.ternak.sapi.payload.kelahiran;
 
 
+import com.ternak.sapi.model.Peternak;
 import java.time.Instant;
 import javax.validation.constraints.NotBlank;
 
@@ -9,8 +10,7 @@ public class KelahiranResponse {
     private String tanggalLaporan;
     private String tanggalLahir;
     private String lokasi;
-    private String namaPeternak;
-    private String idPeternak;
+    private Peternak idPeternak;
     private String kartuTernakInduk;
     private String eartagInduk;
     private String idHewanInduk;
@@ -33,23 +33,17 @@ public class KelahiranResponse {
     public KelahiranResponse() {
     }
 
-    public KelahiranResponse( String idKejadian, String tanggalLaporan, String tanggalLahir, String lokasi, 
-            String namaPeternak, String idPeternak, String kartuTernakInduk, String eartagInduk, String idHewanInduk, 
-            String spesiesInduk, String idPejantanStraw, String idBatchStraw, String produsenStraw, String spesiesPejantan, 
-            String jumlah, String kartuTernakAnak, String eartagAnak, String idHewanAnak, String jenisKelaminAnak, 
-            String kategori, String petugasPelapor, String urutanIb, Instant updatedAt, Instant createdAt) {
+    public KelahiranResponse(String idKejadian, String tanggalLaporan, String tanggalLahir, String lokasi, Peternak idPeternak, String kartuTernakInduk, String eartagInduk, String idHewanInduk, String spesiesInduk, String idPejantanStraw, String idBatchStraw, String produsenStraw, String spesiesPejantan, String jumlah, String kartuTernakAnak, String eartagAnak, String idHewanAnak, String jenisKelaminAnak, String kategori, String petugasPelapor, String urutanIb, Instant updatedAt, Instant createdAt) {
         this.idKejadian = idKejadian;
         this.tanggalLaporan = tanggalLaporan;
         this.tanggalLahir = tanggalLahir;
         this.lokasi = lokasi;
-        this.namaPeternak = namaPeternak;
         this.idPeternak = idPeternak;
         this.kartuTernakInduk = kartuTernakInduk;
         this.eartagInduk = eartagInduk;
         this.idHewanInduk = idHewanInduk;
         this.spesiesInduk = spesiesInduk;
         this.idPejantanStraw = idPejantanStraw;
-        this.kartuTernakInduk = kartuTernakInduk;
         this.idBatchStraw = idBatchStraw;
         this.produsenStraw = produsenStraw;
         this.spesiesPejantan = spesiesPejantan;
@@ -57,12 +51,15 @@ public class KelahiranResponse {
         this.kartuTernakAnak = kartuTernakAnak;
         this.eartagAnak = eartagAnak;
         this.idHewanAnak = idHewanAnak;
+        this.jenisKelaminAnak = jenisKelaminAnak;
         this.kategori = kategori;
         this.petugasPelapor = petugasPelapor;
         this.urutanIb = urutanIb;
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
     }
+
+    
 
     public String getEartagAnak() {
         return eartagAnak;
@@ -120,14 +117,6 @@ public class KelahiranResponse {
         this.idPejantanStraw = idPejantanStraw;
     }
 
-    public String getIdPeternak() {
-        return idPeternak;
-    }
-
-    public void setIdPeternak(String idPeternak) {
-        this.idPeternak = idPeternak;
-    }
-
     public String getJenisKelaminAnak() {
         return jenisKelaminAnak;
     }
@@ -176,12 +165,12 @@ public class KelahiranResponse {
         this.lokasi = lokasi;
     }
 
-    public String getNamaPeternak() {
-        return namaPeternak;
+    public Peternak getIdPeternak() {
+        return idPeternak;
     }
 
-    public void setNamaPeternak(String namaPeternak) {
-        this.namaPeternak = namaPeternak;
+    public void setIdPeternak(Peternak idPeternak) {
+        this.idPeternak = idPeternak;
     }
 
     public String getPetugasPelapor() {

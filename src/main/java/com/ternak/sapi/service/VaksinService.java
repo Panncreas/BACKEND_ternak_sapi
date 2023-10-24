@@ -47,7 +47,6 @@ public class VaksinService {
             vaksinResponse.setIdVaksin(asResponse.getIdVaksin());
             vaksinResponse.setTanggalIB(asResponse.getTanggalIB());
             vaksinResponse.setLokasi(asResponse.getLokasi());
-            vaksinResponse.setNamaPeternak(asResponse.getNamaPeternak());
             vaksinResponse.setIdPeternak(asResponse.getIdPeternak());
             vaksinResponse.setIdHewan(asResponse.getIdHewan());
             vaksinResponse.setEartag(asResponse.getEartag());
@@ -74,7 +73,6 @@ public class VaksinService {
         vaksin.setIdVaksin(vaksinRequest.getIdVaksin());
         vaksin.setTanggalIB(vaksinRequest.getTanggalIB());
         vaksin.setLokasi(vaksinRequest.getLokasi());
-        vaksin.setNamaPeternak(vaksinRequest.getNamaPeternak());
         vaksin.setIdPeternak(vaksinRequest.getIdPeternak());
         vaksin.setIdHewan(vaksinRequest.getIdHewan());
         vaksin.setEartag(vaksinRequest.getEartag());
@@ -100,7 +98,6 @@ public class VaksinService {
         vaksinResponse.setIdVaksin(vaksin.getIdVaksin());
         vaksinResponse.setTanggalIB(vaksin.getTanggalIB());
         vaksinResponse.setLokasi(vaksin.getLokasi());
-        vaksinResponse.setNamaPeternak(vaksin.getNamaPeternak());
         vaksinResponse.setIdPeternak(vaksin.getIdPeternak());
         vaksinResponse.setIdHewan(vaksin.getIdHewan());
         vaksinResponse.setEartag(vaksin.getEartag());
@@ -133,7 +130,6 @@ public class VaksinService {
             vaksin.setIdVaksin(vaksinReq.getIdVaksin());
             vaksin.setTanggalIB(vaksinReq.getTanggalIB());
             vaksin.setLokasi(vaksinReq.getLokasi());
-            vaksin.setNamaPeternak(vaksinReq.getNamaPeternak());
             vaksin.setIdPeternak(vaksinReq.getIdPeternak());
             vaksin.setIdHewan(vaksinReq.getIdHewan());
             vaksin.setEartag(vaksinReq.getEartag());

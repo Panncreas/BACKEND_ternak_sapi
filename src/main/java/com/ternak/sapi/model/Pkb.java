@@ -1,5 +1,6 @@
 package com.ternak.sapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ternak.sapi.model.audit.UserDateAudit;
 
 import javax.persistence.*;
@@ -15,11 +16,12 @@ public class Pkb extends UserDateAudit {
     @Lob
     private String tanggalPkb;
     private String lokasi;
-    private String namaPeternak;
     
-    private String idPeternak;
+    @ManyToOne
+    @JoinColumn(name = "idPeternak", nullable = false)
+    @JsonIgnore
+    private Peternak idPeternak;
     
-    private String nikPeternak;
     private String idHewan;
     private String spesies;
     private String kategori;
@@ -34,16 +36,11 @@ public class Pkb extends UserDateAudit {
         this.idKejadian = idKejadian;
     }
 
-    public Pkb( String idKejadian, String tanggalPkb, String lokasi, 
-            String namaPeternak, String idPeternak, String nikPeternak, String idHewan, 
-            String spesies, String jumlah, String kategori, String umurKebuntingan, String pemeriksaKebuntingan) {
-        
+    public Pkb(String idKejadian, String tanggalPkb, String lokasi, Peternak idPeternak, String idHewan, String spesies, String kategori, String jumlah, String umurKebuntingan, String pemeriksaKebuntingan) {
         this.idKejadian = idKejadian;
         this.tanggalPkb = tanggalPkb;
         this.lokasi = lokasi;
-        this.namaPeternak = namaPeternak;
         this.idPeternak = idPeternak;
-        this.nikPeternak = nikPeternak;
         this.idHewan = idHewan;
         this.spesies = spesies;
         this.kategori = kategori;
@@ -51,7 +48,6 @@ public class Pkb extends UserDateAudit {
         this.umurKebuntingan = umurKebuntingan;
         this.pemeriksaKebuntingan = pemeriksaKebuntingan;
     }
-
 
     public String getIdKejadian() {
         return idKejadian;
@@ -61,14 +57,15 @@ public class Pkb extends UserDateAudit {
         this.idKejadian = idKejadian;
     }
 
-    public String getIdPeternak() {
+    public Peternak getIdPeternak() {
         return idPeternak;
     }
 
-    public void setIdPeternak(String idPeternak) {
+    public void setIdPeternak(Peternak idPeternak) {
         this.idPeternak = idPeternak;
     }
 
+    
     public String getJumlah() {
         return jumlah;
     }
@@ -93,13 +90,6 @@ public class Pkb extends UserDateAudit {
         this.lokasi = lokasi;
     }
 
-    public String getNamaPeternak() {
-        return namaPeternak;
-    }
-
-    public void setNamaPeternak(String namaPeternak) {
-        this.namaPeternak = namaPeternak;
-    }
 
     public String getIdHewan() {
         return idHewan;
@@ -109,13 +99,6 @@ public class Pkb extends UserDateAudit {
         this.idHewan = idHewan;
     }
 
-    public String getNikPeternak() {
-        return nikPeternak;
-    }
-
-    public void setNikPeternak(String nikPeternak) {
-        this.nikPeternak = nikPeternak;
-    }
 
     public String getPemeriksaKebuntingan() {
         return pemeriksaKebuntingan;

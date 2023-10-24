@@ -24,9 +24,10 @@ public class Vaksin extends UserDateAudit {
 
     private String lokasi;
 
-    private String namaPeternak;
-    
-    private String idPeternak;
+    @ManyToOne
+    @JoinColumn(name = "idPeternak", nullable = false)
+    @JsonIgnore
+    private Peternak idPeternak;
     
     private String idHewan;
     
@@ -54,14 +55,10 @@ public class Vaksin extends UserDateAudit {
         this.idVaksin = idVaksin;
     }
 
-    public Vaksin(String idVaksin, String tanggalIB, String lokasi, String namaPeternak, String idPeternak, 
-                      String idHewan, String eartag, String ib1, String ib2, String ib3, String ibLain, 
-                      String idPejantan, String idPembuatan, String bangsaPejantan, 
-                      String produsen, String inseminator) {
+    public Vaksin(String idVaksin, String tanggalIB, String lokasi, Peternak idPeternak, String idHewan, String eartag, String ib1, String ib2, String ib3, String ibLain, String idPejantan, String idPembuatan, String bangsaPejantan, String produsen, String inseminator) {
         this.idVaksin = idVaksin;
         this.tanggalIB = tanggalIB;
         this.lokasi = lokasi;
-        this.namaPeternak = namaPeternak;
         this.idPeternak = idPeternak;
         this.idHewan = idHewan;
         this.eartag = eartag;
@@ -100,19 +97,11 @@ public class Vaksin extends UserDateAudit {
         this.lokasi = lokasi;
     }
 
-    public String getNamaPeternak() {
-        return namaPeternak;
-    }
-
-    public void setNamaPeternak(String namaPeternak) {
-        this.namaPeternak = namaPeternak;
-    }
-
-    public String getIdPeternak() {
+    public Peternak getIdPeternak() {
         return idPeternak;
     }
 
-    public void setIdPeternak(String idPeternak) {
+    public void setIdPeternak(Peternak idPeternak) {
         this.idPeternak = idPeternak;
     }
 

@@ -1,6 +1,7 @@
 package com.ternak.sapi.payload.inseminasi;
 
 
+import com.ternak.sapi.model.Peternak;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
@@ -13,9 +14,7 @@ public class InseminasiRequest {
 
     private String lokasi;
 
-    private String namaPeternak;
-
-    private String idPeternak;
+    private Peternak idPeternak;
     
     private String idHewan;
     
@@ -60,19 +59,11 @@ public class InseminasiRequest {
         this.lokasi = lokasi;
     }
 
-    public String getNamaPeternak() {
-        return namaPeternak;
-    }
-
-    public void setNamaPeternak(String namaPeternak) {
-        this.namaPeternak = namaPeternak;
-    }
-
-    public String getIdPeternak() {
+    public Peternak getIdPeternak() {
         return idPeternak;
     }
 
-    public void setIdPeternak(String idPeternak) {
+    public void setIdPeternak(Peternak idPeternak) {
         this.idPeternak = idPeternak;
     }
 

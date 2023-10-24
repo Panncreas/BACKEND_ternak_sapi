@@ -1,16 +1,19 @@
 package com.ternak.sapi.payload.pkb;
 
 
-import com.ternak.sapi.payload.kelahiran.*;
-import javax.validation.constraints.NotBlank;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ternak.sapi.model.Peternak;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 public class PkbRequest {
     private String idKejadian;
     private String tanggalPkb;
     private String lokasi;
-    private String namaPeternak;
-    private String idPeternak;
-    private String nikPeternak;
+    
+    private Peternak idPeternak;
+    
     private String idHewan;
     private String spesies;
     private String kategori;
@@ -26,13 +29,15 @@ public class PkbRequest {
         this.idKejadian = idKejadian;
     }
 
-    public String getIdPeternak() {
+    public Peternak getIdPeternak() {
         return idPeternak;
     }
 
-    public void setIdPeternak(String idPeternak) {
+    public void setIdPeternak(Peternak idPeternak) {
         this.idPeternak = idPeternak;
     }
+
+   
 
     public String getJumlah() {
         return jumlah;
@@ -58,13 +63,7 @@ public class PkbRequest {
         this.lokasi = lokasi;
     }
 
-    public String getNamaPeternak() {
-        return namaPeternak;
-    }
-
-    public void setNamaPeternak(String namaPeternak) {
-        this.namaPeternak = namaPeternak;
-    }
+    
 
     public String getIdHewan() {
         return idHewan;
@@ -74,14 +73,7 @@ public class PkbRequest {
         this.idHewan = idHewan;
     }
 
-    public String getNikPeternak() {
-        return nikPeternak;
-    }
-
-    public void setNikPeternak(String nikPeternak) {
-        this.nikPeternak = nikPeternak;
-    }
-
+    
     public String getPemeriksaKebuntingan() {
         return pemeriksaKebuntingan;
     }

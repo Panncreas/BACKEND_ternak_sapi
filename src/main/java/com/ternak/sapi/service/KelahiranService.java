@@ -48,7 +48,6 @@ public class KelahiranService {
             kelahiranResponse.setTanggalLaporan(asResponse.getTanggalLaporan());
             kelahiranResponse.setTanggalLahir(asResponse.getTanggalLahir());
             kelahiranResponse.setLokasi(asResponse.getLokasi());
-            kelahiranResponse.setNamaPeternak(asResponse.getNamaPeternak());
             kelahiranResponse.setIdPeternak(asResponse.getIdPeternak());
             kelahiranResponse.setKartuTernakInduk(asResponse.getKartuTernakInduk());
             kelahiranResponse.setEartagInduk(asResponse.getEartagInduk());
@@ -81,7 +80,6 @@ public class KelahiranService {
         kelahiran.setTanggalLaporan(kelahiranRequest.getTanggalLaporan());
         kelahiran.setTanggalLahir(kelahiranRequest.getTanggalLahir());
         kelahiran.setLokasi(kelahiranRequest.getLokasi());
-        kelahiran.setNamaPeternak(kelahiranRequest.getNamaPeternak());
         kelahiran.setIdPeternak(kelahiranRequest.getIdPeternak());
         kelahiran.setKartuTernakInduk(kelahiranRequest.getKartuTernakInduk());
         kelahiran.setEartagInduk(kelahiranRequest.getEartagInduk());
@@ -113,7 +111,6 @@ public class KelahiranService {
         kelahiranResponse.setTanggalLaporan(kelahiran.getTanggalLaporan());
         kelahiranResponse.setTanggalLahir(kelahiran.getTanggalLahir());
         kelahiranResponse.setLokasi(kelahiran.getLokasi());
-        kelahiranResponse.setNamaPeternak(kelahiran.getNamaPeternak());
         kelahiranResponse.setIdPeternak(kelahiran.getIdPeternak());
         kelahiranResponse.setKartuTernakInduk(kelahiran.getKartuTernakInduk());
         kelahiranResponse.setEartagInduk(kelahiran.getEartagInduk());
@@ -152,7 +149,6 @@ public class KelahiranService {
             kelahiran.setTanggalLaporan(kelahiranReq.getTanggalLaporan());
             kelahiran.setTanggalLahir(kelahiranReq.getTanggalLahir());
             kelahiran.setLokasi(kelahiranReq.getLokasi());
-            kelahiran.setNamaPeternak(kelahiranReq.getNamaPeternak());
             kelahiran.setIdPeternak(kelahiranReq.getIdPeternak());
             kelahiran.setKartuTernakInduk(kelahiranReq.getKartuTernakInduk());
             kelahiran.setEartagInduk(kelahiranReq.getEartagInduk());
