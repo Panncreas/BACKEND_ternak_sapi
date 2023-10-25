@@ -1,15 +1,17 @@
 package com.ternak.sapi.payload.kandang;
 
+import com.ternak.sapi.model.Peternak;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.springframework.web.multipart.MultipartFile;
 
 public class KandangRequest {
     @Id
     private String idKandang;
     
-    private String idPeternak;
+    private Peternak idPeternak;
     private String namaPeternak;
     private String luas;
     private String kapasitas;
@@ -19,6 +21,7 @@ public class KandangRequest {
     private String kecamatan;
     private String kabupaten;
     private String provinsi;
+    private MultipartFile image;
 
     public String getIdKandang() {
         return idKandang;
@@ -28,11 +31,11 @@ public class KandangRequest {
         this.idKandang = idKandang;
     }
 
-    public String getIdPeternak() {
+    public Peternak getIdPeternak() {
         return idPeternak;
     }
 
-    public void setIdPeternak(String idPeternak) {
+    public void setIdPeternak(Peternak idPeternak) {
         this.idPeternak = idPeternak;
     }
 
@@ -106,6 +109,14 @@ public class KandangRequest {
 
     public void setProvinsi(String provinsi) {
         this.provinsi = provinsi;
+    }
+
+    public MultipartFile getImage() {
+        return image;
+    }
+
+    public void setImage(MultipartFile image) {
+        this.image = image;
     }
     
     

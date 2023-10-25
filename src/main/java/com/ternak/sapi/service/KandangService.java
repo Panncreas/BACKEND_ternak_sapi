@@ -1,11 +1,13 @@
 package com.ternak.sapi.service;
 
 import com.ternak.sapi.exception.BadRequestException;
+import com.ternak.sapi.exception.FileStorageException;
 import com.ternak.sapi.exception.ResourceNotFoundException;
 import com.ternak.sapi.model.Kandang;
 import com.ternak.sapi.payload.PagedResponse;
 import com.ternak.sapi.payload.kandang.KandangRequest;
 import com.ternak.sapi.payload.kandang.KandangResponse;
+import com.ternak.sapi.property.FileStorageProperties;
 import com.ternak.sapi.security.UserPrincipal;
 import com.ternak.sapi.util.AppConstants;
 import org.slf4j.Logger;
@@ -21,13 +23,33 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import com.ternak.sapi.repository.KandangRepository;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import javax.validation.Valid;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class KandangService {
     @Autowired
     private KandangRepository kandangRepository;
-
+    private final Path fileStorageLocation;
     private static final Logger logger = LoggerFactory.getLogger(KandangService.class);
+    
+    @Autowired
+    public KandangService(FileStorageProperties fileStorageProperties) {
+        this.fileStorageLocation = Paths.get(fileStorageProperties.getUploadDir())
+                .toAbsolutePath().normalize();
+
+        try {
+            Files.createDirectories(this.fileStorageLocation);
+        } catch (Exception ex) {
+            throw new FileStorageException("Could not create the directory where the uploaded files will be stored.", ex);
+        }
+    }
 
     public PagedResponse<KandangResponse> getAllKandang(int page, int size) {
         validatePageNumberAndSize(page, size);
@@ -64,7 +86,16 @@ public class KandangService {
                 kandang.getSize(), kandang.getTotalElements(), kandang.getTotalPages(), kandang.isLast(), 200);
     }
 
-    public Kandang createKandang(UserPrincipal currentUser, KandangRequest kandangRequest) {
+    public Kandang createKandang(UserPrincipal currentUser,@Valid KandangRequest kandangRequest, MultipartFile file) {
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        try {
+            // Check if the file's name contains invalid characters
+            if(fileName.contains("..")) {
+                throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
+            }
+            
+        Path targetLocation = this.fileStorageLocation.resolve(fileName);
+            Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
         Kandang kandang = new Kandang();
         kandang.setIdKandang(kandangRequest.getIdKandang());
         kandang.setIdPeternak(kandangRequest.getIdPeternak());
@@ -80,6 +111,9 @@ public class KandangService {
         kandang.setCreatedBy(currentUser.getId());
         kandang.setUpdatedBy(currentUser.getId());
         return kandangRepository.save(kandang);
+        } catch (IOException ex) {
+            throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
+        }
     }
 
     public KandangResponse getKandangById(String kandangId) {

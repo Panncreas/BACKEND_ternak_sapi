@@ -2,16 +2,22 @@ package com.ternak.sapi.service;
 
 import com.ternak.sapi.exception.BadRequestException;
 import com.ternak.sapi.exception.ResourceNotFoundException;
+import com.ternak.sapi.exception.FileStorageException;
 import com.ternak.sapi.model.Hewan;
 //import com.doyatama.university.model.Subject;
 import com.ternak.sapi.payload.PagedResponse;
 import com.ternak.sapi.payload.hewan.HewanRequest;
 import com.ternak.sapi.payload.hewan.HewanResponse;
 import com.ternak.sapi.repository.HewanRepository;
+import com.ternak.sapi.property.FileStorageProperties;
 import com.ternak.sapi.security.UserPrincipal;
 import com.ternak.sapi.util.AppConstants;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +32,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.logging.Level;
+import javax.validation.Valid;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -33,9 +40,22 @@ import org.springframework.web.multipart.MultipartFile;
 public class HewanService {
     @Autowired
     private HewanRepository hewanRepository;
-
+    
+    private final Path fileStorageLocation;
+    
     private static final Logger logger = LoggerFactory.getLogger(HewanService.class);
-    private final String FOLDER_PATH="E:/Myfile/Magang Maching Fund/img";
+    
+    @Autowired
+    public HewanService(FileStorageProperties fileStorageProperties) {
+        this.fileStorageLocation = Paths.get(fileStorageProperties.getUploadDir())
+                .toAbsolutePath().normalize();
+
+        try {
+            Files.createDirectories(this.fileStorageLocation);
+        } catch (Exception ex) {
+            throw new FileStorageException("Could not create the directory where the uploaded files will be stored.", ex);
+        }
+    }
 
     public PagedResponse<HewanResponse> getAllHewan(int page, int size) {
         validatePageNumberAndSize(page, size);
@@ -67,7 +87,7 @@ public class HewanService {
             hewanResponse.setIdentifikasiHewan(asResponse.getIdentifikasiHewan());
             hewanResponse.setPetugasPendaftar(asResponse.getPetugasPendaftar());
             hewanResponse.setTanggalTerdaftar(asResponse.getTanggalTerdaftar());
-            hewanResponse.setImage(asResponse.getImage());
+            hewanResponse.setFotoHewan(asResponse.getFotoHewan());
             hewanResponse.setCreatedAt(asResponse.getCreatedAt());
             hewanResponse.setUpdatedAt(asResponse.getUpdatedAt());
             return hewanResponse;
@@ -77,33 +97,40 @@ public class HewanService {
                 hewans.getSize(), hewans.getTotalElements(), hewans.getTotalPages(), hewans.isLast(), 200);
     }
 
-    public Hewan createHewan(UserPrincipal currentUser, MultipartFile file, HewanRequest hewanRequest) throws IOException {
-        Hewan hewan = new Hewan();
-        String originalFilename = file.getOriginalFilename();
-        String randomName = UUID.randomUUID().toString() + "." + StringUtils.getFilenameExtension(originalFilename);
-        String filePath = FOLDER_PATH + randomName;
-        File destFile = new File(FOLDER_PATH, randomName);
-        
-        hewan.setKodeEartagNasional(hewanRequest.getKodeEartagNasional());
-        hewan.setNoKartuTernak(hewanRequest.getNoKartuTernak());
-        hewan.setProvinsi(hewanRequest.getProvinsi());
-        hewan.setKabupaten(hewanRequest.getKabupaten());
-        hewan.setKecamatan(hewanRequest.getKecamatan());
-        hewan.setDesa(hewanRequest.getDesa());
-        hewan.setNamaPeternak(hewanRequest.getNamaPeternak());
-        hewan.setIdPeternak(hewanRequest.getIdPeternak());
-        hewan.setNikPeternak(hewanRequest.getNikPeternak());
-        hewan.setSpesies(hewanRequest.getSpesies());
-        hewan.setSex(hewanRequest.getSex());
-        hewan.setUmur(hewanRequest.getUmur());
-        hewan.setIdentifikasiHewan(hewanRequest.getIdentifikasiHewan());
-        hewan.setPetugasPendaftar(hewanRequest.getPetugasPendaftar());
-        hewan.setTanggalTerdaftar(hewanRequest.getTanggalTerdaftar()); 
-        hewan.setCreatedBy(currentUser.getId());
-        hewan.setUpdatedBy(currentUser.getId());
-        file.transferTo(destFile);
-        hewan.setImage(filePath);
-        return hewanRepository.save(hewan);
+    public Hewan createHewan(UserPrincipal currentUser, @Valid HewanRequest hewanRequest, MultipartFile file ) throws IOException {
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        try {
+            // Check if the file's name contains invalid characters
+            if(fileName.contains("..")) {
+                throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
+            }
+            
+            Path targetLocation = this.fileStorageLocation.resolve(fileName);
+            Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
+            
+            Hewan hewan = new Hewan();
+            hewan.setKodeEartagNasional(hewanRequest.getKodeEartagNasional());
+            hewan.setNoKartuTernak(hewanRequest.getNoKartuTernak());
+            hewan.setProvinsi(hewanRequest.getProvinsi());
+            hewan.setKabupaten(hewanRequest.getKabupaten());
+            hewan.setKecamatan(hewanRequest.getKecamatan());
+            hewan.setDesa(hewanRequest.getDesa());
+            hewan.setNamaPeternak(hewanRequest.getNamaPeternak());
+            hewan.setIdPeternak(hewanRequest.getIdPeternak());
+            hewan.setNikPeternak(hewanRequest.getNikPeternak());
+            hewan.setSpesies(hewanRequest.getSpesies());
+            hewan.setSex(hewanRequest.getSex());
+            hewan.setUmur(hewanRequest.getUmur());
+            hewan.setIdentifikasiHewan(hewanRequest.getIdentifikasiHewan());
+            hewan.setPetugasPendaftar(hewanRequest.getPetugasPendaftar());
+            hewan.setTanggalTerdaftar(hewanRequest.getTanggalTerdaftar()); 
+            hewan.setCreatedBy(currentUser.getId());
+            hewan.setUpdatedBy(currentUser.getId());
+            hewan.setFotoHewan(fileName);
+            return hewanRepository.save(hewan);
+        } catch (IOException ex) {
+            throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
+        }
     }
 
     public HewanResponse getHewanById(String hewanId) {
@@ -126,7 +153,7 @@ public class HewanService {
         hewanResponse.setIdentifikasiHewan(hewan.getIdentifikasiHewan());
         hewanResponse.setPetugasPendaftar(hewan.getPetugasPendaftar());
         hewanResponse.setTanggalTerdaftar(hewan.getTanggalTerdaftar());
-        hewanResponse.setImage(hewan.getImage());
+        hewanResponse.setFotoHewan(hewan.getFotoHewan());
         hewanResponse.setCreatedAt(hewan.getCreatedAt());
         hewanResponse.setUpdatedAt(hewan.getUpdatedAt());
         return hewanResponse;
@@ -142,12 +169,8 @@ public class HewanService {
         }
     }
 
-    public Hewan updateHewan(HewanRequest hewanReq, String id, MultipartFile file, UserPrincipal currentUser) {
-        // if else exist or not
-        String originalFilename = file.getOriginalFilename();
-        String randomName = UUID.randomUUID().toString() + "." + StringUtils.getFilenameExtension(originalFilename);
-        String filePath = FOLDER_PATH + randomName;
-        File destFile = new File(FOLDER_PATH, randomName);
+    public Hewan updateHewan(HewanRequest hewanReq, String id,  UserPrincipal currentUser) {
+       
         return hewanRepository.findById(id).map(hewan -> {
             hewan.setNoKartuTernak(hewanReq.getNoKartuTernak());
             hewan.setKodeEartagNasional(hewanReq.getKodeEartagNasional());
@@ -164,14 +187,6 @@ public class HewanService {
             hewan.setIdentifikasiHewan(hewanReq.getIdentifikasiHewan());
             hewan.setPetugasPendaftar(hewanReq.getPetugasPendaftar());
             hewan.setTanggalTerdaftar(hewanReq.getTanggalTerdaftar());
-            try {
-                file.transferTo(destFile);
-            } catch (IOException ex) {
-                java.util.logging.Logger.getLogger(HewanService.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IllegalStateException ex) {
-                java.util.logging.Logger.getLogger(HewanService.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            hewan.setImage(filePath);
             hewan.setUpdatedBy(currentUser.getId());
             return hewanRepository.save(hewan);
         }).orElseThrow(() -> new ResourceNotFoundException("Hewan" , "id" , id));

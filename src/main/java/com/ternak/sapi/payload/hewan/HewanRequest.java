@@ -1,6 +1,7 @@
 package com.ternak.sapi.payload.hewan;
 
 
+import com.ternak.sapi.model.Peternak;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,7 +19,7 @@ public class HewanRequest {
     private String kecamatan;
     private String desa;
     private String namaPeternak;
-    private String idPeternak;
+    private Peternak idPeternak;
     private String nikPeternak;
     private String spesies;
     private String sex;
@@ -27,8 +28,8 @@ public class HewanRequest {
     private String petugasPendaftar;
     private String tanggalTerdaftar;
     private MultipartFile image;
-
     
+
     //SETTER DAN GETTER
     public String getNoKartuTernak() {
         return noKartuTernak;
@@ -86,11 +87,11 @@ public class HewanRequest {
         this.namaPeternak = namaPeternak;
     }
 
-    public String getIdPeternak() {
+    public Peternak getIdPeternak() {
         return idPeternak;
     }
 
-    public void setIdPeternak(String idPeternak) {
+    public void setIdPeternak(Peternak idPeternak) {
         this.idPeternak = idPeternak;
     }
 

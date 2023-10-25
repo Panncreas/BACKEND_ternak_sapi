@@ -1,5 +1,6 @@
 package com.ternak.sapi.payload.hewan;
 
+import com.ternak.sapi.model.Peternak;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,7 +16,7 @@ public class HewanResponse {
     private String kecamatan;
     private String desa;
     private String namaPeternak;
-    private String idPeternak;
+    private Peternak idPeternak;
     private String nikPeternak;
     private String spesies;
     private String sex;
@@ -23,7 +24,7 @@ public class HewanResponse {
     private String identifikasiHewan;
     private String petugasPendaftar;
     private String tanggalTerdaftar;
-    private String image;
+    private String fotoHewan;
     private Instant updatedAt;
     private Instant createdAt;
 
@@ -31,8 +32,8 @@ public class HewanResponse {
     }
     
     public HewanResponse( String kodeEartagNasional, String noKartuTernakTernak, String provinsi, String kabupaten, String kecamatan,
-                        String desa, String namaPeternak, String idPeternak, String nikPeternak, String spesies, String sex, String umur, 
-                        String identifikasiHewan, String petugasPendaftar, Instant updatedAt, Instant createdAt, String image) {
+                        String desa, String namaPeternak, Peternak idPeternak, String nikPeternak, String spesies, String sex, String umur, 
+                        String identifikasiHewan, String petugasPendaftar, Instant updatedAt, Instant createdAt, String fotoHewan) {
         
         
         this.kodeEartagNasional = kodeEartagNasional;
@@ -51,7 +52,7 @@ public class HewanResponse {
         this.petugasPendaftar = petugasPendaftar;
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
-        this.image = image;
+        this.fotoHewan = fotoHewan;
     }
 
     //SETTER DAN GETTER
@@ -112,11 +113,11 @@ public class HewanResponse {
         this.namaPeternak = namaPeternak;
     }
 
-    public String getIdPeternak() {
+    public Peternak getIdPeternak() {
         return idPeternak;
     }
 
-    public void setIdPeternak(String idPeternak) {
+    public void setIdPeternak(Peternak idPeternak) {
         this.idPeternak = idPeternak;
     }
 
@@ -192,13 +193,11 @@ public class HewanResponse {
         this.updatedAt = updatedAt;
     }
 
-    public String getImage() {
-        return image;
+    public String getFotoHewan() {
+        return fotoHewan;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setFotoHewan(String fotoHewan) {
+        this.fotoHewan = fotoHewan;
     }
-    
-    
 }

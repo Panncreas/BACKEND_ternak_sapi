@@ -1,6 +1,7 @@
 
 package com.ternak.sapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ternak.sapi.model.audit.UserDateAudit;
 
 import javax.persistence.*;
@@ -19,15 +20,19 @@ public class Hewan extends UserDateAudit {
     private String kecamatan;
     private String desa;
     private String namaPeternak;
-    private String idPeternak;
-    private String  nikPeternak;
+    
+    @ManyToOne
+    @JoinColumn(name = "idPeternak", nullable = false)
+    @JsonIgnore
+    private Peternak idPeternak;
+    private String nikPeternak;
     private String spesies;
     private String sex;
     private String umur;
     private String identifikasiHewan;
     private String petugasPendaftar;
     private String tanggalTerdaftar;
-    private String image;
+    private String fotoHewan;
     
     public Hewan() {
     }
@@ -37,8 +42,8 @@ public class Hewan extends UserDateAudit {
     }
 
     public Hewan(String noKartuTernak,String kodeEartagNasional, String provinsi, String kabupaten, String kecamatan,
-                        String desa, String namaPeternak, String idPeternak, String nikPeternak, String spesies, String sex, String umur, 
-                        String identifikasiHewan, String petugasPendaftar, String image) {
+                        String desa, String namaPeternak, Peternak idPeternak, String nikPeternak, String spesies, String sex, String umur, 
+                        String identifikasiHewan, String petugasPendaftar, String fotoHewan) {
         
         this.noKartuTernak = noKartuTernak;
         this.kodeEartagNasional = kodeEartagNasional;
@@ -54,7 +59,7 @@ public class Hewan extends UserDateAudit {
         this.umur = umur;
         this.identifikasiHewan = identifikasiHewan;
         this.petugasPendaftar = petugasPendaftar;
-        this.image = image;
+        this.fotoHewan = fotoHewan;
     }
 
     
@@ -115,11 +120,11 @@ public class Hewan extends UserDateAudit {
         this.namaPeternak = namaPeternak;
     }
 
-    public String getIdPeternak() {
+    public Peternak getIdPeternak() {
         return idPeternak;
     }
 
-    public void setIdPeternak(String idPeternak) {
+    public void setIdPeternak(Peternak idPeternak) {
         this.idPeternak = idPeternak;
     }
 
@@ -179,13 +184,14 @@ public class Hewan extends UserDateAudit {
         this.tanggalTerdaftar = tanggalTerdaftar;
     }
 
-    public String getImage() {
-        return image;
+    public String getFotoHewan() {
+        return fotoHewan;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setFotoHewan(String fotoHewan) {
+        this.fotoHewan = fotoHewan;
     }
 
+   
     
 }

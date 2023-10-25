@@ -1,11 +1,12 @@
 package com.ternak.sapi.payload.kandang;
 
+import com.ternak.sapi.model.Peternak;
 import java.time.Instant;
 
 public class KandangResponse {
     private String idKandang;
     
-    private String idPeternak;
+    private Peternak idPeternak;
     private String namaPeternak;
     private String luas;
     private String kapasitas;
@@ -15,6 +16,7 @@ public class KandangResponse {
     private String kecamatan;
     private String kabupaten;
     private String provinsi;
+    private String fotoKandang;
     private Instant updatedAt;
     private Instant createdAt;
 
@@ -26,11 +28,11 @@ public class KandangResponse {
         this.idKandang = idKandang;
     }
 
-    public String getIdPeternak() {
+    public Peternak getIdPeternak() {
         return idPeternak;
     }
 
-    public void setIdPeternak(String idPeternak) {
+    public void setIdPeternak(Peternak idPeternak) {
         this.idPeternak = idPeternak;
     }
 
@@ -106,6 +108,14 @@ public class KandangResponse {
         this.provinsi = provinsi;
     }
 
+    public String getFotoKandang() {
+        return fotoKandang;
+    }
+
+    public void setFotoKandang(String fotoKandang) {
+        this.fotoKandang = fotoKandang;
+    }
+    
     public Instant getUpdatedAt() {
         return updatedAt;
     }

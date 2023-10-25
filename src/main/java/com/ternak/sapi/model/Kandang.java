@@ -16,7 +16,10 @@ public class Kandang extends UserDateAudit {
     @Id
     private String idKandang;
     
-    private String idPeternak;
+    @ManyToOne
+    @JoinColumn(name = "idPeternak", nullable = false)
+    @JsonIgnore
+    private Peternak idPeternak;
     private String namaPeternak;
     private String luas;
     private String kapasitas;
@@ -26,11 +29,12 @@ public class Kandang extends UserDateAudit {
     private String kecamatan;
     private String kabupaten;
     private String provinsi;
+    private String fotoKandang;
     
     public Kandang(){}
-    public Kandang(String idKandang, String idPeternak, String namaPeternak, String luas, 
+    public Kandang(String idKandang, Peternak idPeternak, String namaPeternak, String luas, 
                    String kapasitas, String nilaiBangunan, String alamat, String desa,
-                   String kecamatan, String kabupaten, String provinsi){
+                   String kecamatan, String kabupaten, String provinsi, String fotoKandang){
         this.idKandang = idKandang;
         this.idPeternak = idPeternak;
         this.namaPeternak = namaPeternak;
@@ -42,6 +46,7 @@ public class Kandang extends UserDateAudit {
         this.kecamatan = kecamatan;
         this.kabupaten = kabupaten;
         this.provinsi = provinsi;
+        this.fotoKandang = fotoKandang;
     }
 
     public String getIdKandang() {
@@ -52,11 +57,11 @@ public class Kandang extends UserDateAudit {
         this.idKandang = idKandang;
     }
 
-    public String getIdPeternak() {
+    public Peternak getIdPeternak() {
         return idPeternak;
     }
 
-    public void setIdPeternak(String idPeternak) {
+    public void setIdPeternak(Peternak idPeternak) {
         this.idPeternak = idPeternak;
     }
 
@@ -131,6 +136,12 @@ public class Kandang extends UserDateAudit {
     public void setProvinsi(String provinsi) {
         this.provinsi = provinsi;
     }
-    
-    
+
+    public String getFotoKandang() {
+        return fotoKandang;
+    }
+
+    public void setFotoKandang(String fotoKandang) {
+        this.fotoKandang = fotoKandang;
+    }
 }

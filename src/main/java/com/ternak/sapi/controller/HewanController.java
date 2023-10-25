@@ -50,76 +50,30 @@ public class HewanController {
     @PostMapping
 @Secured("ROLE_ADMINISTRATOR")
 public ResponseEntity<?> createHewan(
-        @CurrentUser UserPrincipal currentUser,
-        @RequestParam("kodeEartagNasional") String kodeEartagNasional,
-        @RequestParam("noKartuTernak") String noKartuTernak,
-        @RequestParam("provinsi") String provinsi,
-        @RequestParam("kabupaten") String kabupaten,
-        @RequestParam("kecamatan") String kecamatan,
-        @RequestParam("desa") String desa,
-        @RequestParam("namaPeternak") String namaPeternak,
-        @RequestParam("idPeternak") String idPeternak,
-        @RequestParam("nikPeternak") String nikPeternak,
-        @RequestParam("spesies") String spesies,
-        @RequestParam("sex") String sex,
-        @RequestParam("umur") String umur,
-        @RequestParam("identifikasiHewan") String identifikasiHewan,
-        @RequestParam("petugasPendaftar") String petugasPendaftar,
-        @RequestParam("tanggalTerdaftar") String tanggalTerdaftar,
-        @RequestParam("image") MultipartFile image,
-        HewanRequest hewanRequest) {
-    
-    try {
-        Hewan hewan = hewanService.createHewan(currentUser, image, hewanRequest);
+        @CurrentUser UserPrincipal currentUser,@Valid @ModelAttribute HewanRequest hewanRequest, @RequestParam( "image") MultipartFile file
+        )throws IOException {
+        Hewan hewan = hewanService.createHewan(currentUser, hewanRequest, file);
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest().path("/{departmentId}")
+                .buildAndExpand(hewan.getKodeEartagNasional()).toUri();
+
+        return ResponseEntity.created(location)
+                .body(new ApiResponse(true, "Department Created Successfully"));
+}
+
+
+@PutMapping("/{hewanId}")
+@Secured("ROLE_ADMINISTRATOR")
+ public ResponseEntity<?> updateKandangById(@CurrentUser UserPrincipal currentUser, @PathVariable (value = "hewanId") String hewanId, @Valid @RequestBody HewanRequest hewanRequest) {
+        Hewan hewan = hewanService.updateHewan(hewanRequest, hewanId, currentUser);
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{hewanId}")
                 .buildAndExpand(hewan.getKodeEartagNasional()).toUri();
 
         return ResponseEntity.created(location)
-                .body(new ApiResponse(true, "Hewan Created Successfully"));
-    } catch (IOException e) {
-        // Handle the exception appropriately, e.g., return an error response.
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(new ApiResponse(false, "Failed to create Hewan"));
+                .body(new ApiResponse(true, "Hewan Updated Successfully"));
     }
-}
-
-
-@PutMapping("/{hewanId}")
-@Secured("ROLE_ADMINISTRATOR")
-public ResponseEntity<?> updateHewanById(
-        @CurrentUser UserPrincipal currentUser,
-        @PathVariable(value = "hewanId") String hewanId,
-        @RequestParam("kodeEartagNasional") String kodeEartagNasional,
-        @RequestParam("noKartuTernak") String noKartuTernak,
-        @RequestParam("provinsi") String provinsi,
-        @RequestParam("kabupaten") String kabupaten,
-        @RequestParam("kecamatan") String kecamatan,
-        @RequestParam("desa") String desa,
-        @RequestParam("namaPeternak") String namaPeternak,
-        @RequestParam("idPeternak") String idPeternak,
-        @RequestParam("nikPeternak") String nikPeternak,
-        @RequestParam("spesies") String spesies,
-        @RequestParam("sex") String sex,
-        @RequestParam("umur") String umur,
-        @RequestParam("identifikasiHewan") String identifikasiHewan,
-        @RequestParam("petugasPendaftar") String petugasPendaftar,
-        @RequestParam("tanggalTerdaftar") String tanggalTerdaftar,
-        @RequestParam("image") MultipartFile image,
-        HewanRequest hewanRequest) {
-
-   
-
-    Hewan hewan = hewanService.updateHewan(hewanRequest, hewanId, image, currentUser);
-
-    URI location = ServletUriComponentsBuilder
-            .fromCurrentRequest().path("/{hewanId}")
-            .buildAndExpand(hewan.getKodeEartagNasional()).toUri();
-
-    return ResponseEntity.created(location)
-            .body(new ApiResponse(true, "Hewan Updated Successfully"));
-}
 
     @GetMapping("/{hewanId}")
     @Secured("ROLE_ADMINISTRATOR")

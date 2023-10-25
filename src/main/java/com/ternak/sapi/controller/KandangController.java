@@ -22,6 +22,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import com.ternak.sapi.repository.KandangRepository;
+import java.io.IOException;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/kandang")
@@ -46,8 +48,9 @@ public class KandangController {
 
     @PostMapping
     @Secured("ROLE_ADMINISTRATOR")
-    public ResponseEntity<?> createKandang(@CurrentUser UserPrincipal currentUser, @Valid @RequestBody KandangRequest kandangRequest) {
-        Kandang kandang = kandangService.createKandang(currentUser, kandangRequest);
+    public ResponseEntity<?> createKandang(@CurrentUser UserPrincipal currentUser, @Valid @RequestBody KandangRequest kandangRequest, 
+            @RequestParam( "image") MultipartFile file) throws IOException{
+        Kandang kandang = kandangService.createKandang(currentUser, kandangRequest, file);
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{kandangId}")
