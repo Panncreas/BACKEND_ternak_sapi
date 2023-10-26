@@ -20,7 +20,6 @@ public class Kandang extends UserDateAudit {
     @JoinColumn(name = "idPeternak", nullable = false)
     @JsonIgnore
     private Peternak idPeternak;
-    private String namaPeternak;
     private String luas;
     private String kapasitas;
     private String nilaiBangunan;
@@ -32,12 +31,11 @@ public class Kandang extends UserDateAudit {
     private String fotoKandang;
     
     public Kandang(){}
-    public Kandang(String idKandang, Peternak idPeternak, String namaPeternak, String luas, 
+    public Kandang(String idKandang, Peternak idPeternak, String luas, 
                    String kapasitas, String nilaiBangunan, String alamat, String desa,
                    String kecamatan, String kabupaten, String provinsi, String fotoKandang){
         this.idKandang = idKandang;
         this.idPeternak = idPeternak;
-        this.namaPeternak = namaPeternak;
         this.luas = luas;
         this.kapasitas = kapasitas;
         this.nilaiBangunan = nilaiBangunan;
@@ -63,14 +61,6 @@ public class Kandang extends UserDateAudit {
 
     public void setIdPeternak(Peternak idPeternak) {
         this.idPeternak = idPeternak;
-    }
-
-    public String getNamaPeternak() {
-        return namaPeternak;
-    }
-
-    public void setNamaPeternak(String namaPeternak) {
-        this.namaPeternak = namaPeternak;
     }
 
     public String getLuas() {

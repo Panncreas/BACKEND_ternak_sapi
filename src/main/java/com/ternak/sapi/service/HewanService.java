@@ -78,9 +78,7 @@ public class HewanService {
             hewanResponse.setKabupaten(asResponse.getKabupaten());
             hewanResponse.setKecamatan(asResponse.getKecamatan());
             hewanResponse.setDesa(asResponse.getDesa());
-            hewanResponse.setNamaPeternak(asResponse.getNamaPeternak());
             hewanResponse.setIdPeternak(asResponse.getIdPeternak());
-            hewanResponse.setNikPeternak(asResponse.getNikPeternak());
             hewanResponse.setSpesies(asResponse.getSpesies());
             hewanResponse.setSex(asResponse.getSex());
             hewanResponse.setUmur(asResponse.getUmur());
@@ -115,9 +113,7 @@ public class HewanService {
             hewan.setKabupaten(hewanRequest.getKabupaten());
             hewan.setKecamatan(hewanRequest.getKecamatan());
             hewan.setDesa(hewanRequest.getDesa());
-            hewan.setNamaPeternak(hewanRequest.getNamaPeternak());
             hewan.setIdPeternak(hewanRequest.getIdPeternak());
-            hewan.setNikPeternak(hewanRequest.getNikPeternak());
             hewan.setSpesies(hewanRequest.getSpesies());
             hewan.setSex(hewanRequest.getSex());
             hewan.setUmur(hewanRequest.getUmur());
@@ -144,9 +140,7 @@ public class HewanService {
         hewanResponse.setKabupaten(hewan.getKabupaten());
         hewanResponse.setKecamatan(hewan.getKecamatan());
         hewanResponse.setDesa(hewan.getDesa());
-        hewanResponse.setNamaPeternak(hewan.getNamaPeternak());
         hewanResponse.setIdPeternak(hewan.getIdPeternak());
-        hewanResponse.setNikPeternak(hewan.getNikPeternak());
         hewanResponse.setSpesies(hewan.getSpesies());
         hewanResponse.setSex(hewan.getSex());
         hewanResponse.setUmur(hewan.getUmur());
@@ -178,9 +172,7 @@ public class HewanService {
             hewan.setKabupaten(hewanReq.getKabupaten());
             hewan.setKecamatan(hewanReq.getKecamatan());
             hewan.setDesa(hewanReq.getDesa());
-            hewan.setNamaPeternak(hewanReq.getNamaPeternak());
             hewan.setIdPeternak(hewanReq.getIdPeternak());
-            hewan.setNikPeternak(hewanReq.getNikPeternak());
             hewan.setSpesies(hewanReq.getSpesies());
             hewan.setSex(hewanReq.getSex());
             hewan.setUmur(hewanReq.getUmur());

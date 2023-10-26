@@ -2,11 +2,8 @@ package com.ternak.sapi.payload.hewan;
 
 
 import com.ternak.sapi.model.Peternak;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+
 import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import org.springframework.web.multipart.MultipartFile;
 
 public class HewanRequest {
@@ -18,18 +15,23 @@ public class HewanRequest {
     private String kabupaten;
     private String kecamatan;
     private String desa;
-    private String namaPeternak;
     private Peternak idPeternak;
-    private String nikPeternak;
     private String spesies;
     private String sex;
     private String umur;
     private String identifikasiHewan;
     private String petugasPendaftar;
     private String tanggalTerdaftar;
-    private MultipartFile image;
+    private MultipartFile file;
     
 
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
     //SETTER DAN GETTER
     public String getNoKartuTernak() {
         return noKartuTernak;
@@ -79,28 +81,12 @@ public class HewanRequest {
         this.desa = desa;
     }
 
-    public String getNamaPeternak() {
-        return namaPeternak;
-    }
-
-    public void setNamaPeternak(String namaPeternak) {
-        this.namaPeternak = namaPeternak;
-    }
-
     public Peternak getIdPeternak() {
         return idPeternak;
     }
 
     public void setIdPeternak(Peternak idPeternak) {
         this.idPeternak = idPeternak;
-    }
-
-    public String getNikPeternak() {
-        return nikPeternak;
-    }
-
-    public void setNikPeternak(String nikPeternak) {
-        this.nikPeternak = nikPeternak;
     }
 
     public String getSpesies() {
@@ -150,14 +136,5 @@ public class HewanRequest {
     public void setTanggalTerdaftar(String tanggalTerdaftar) {
         this.tanggalTerdaftar = tanggalTerdaftar;
     }   
-
-    public MultipartFile getImage() {
-        return image;
-    }
-
-    public void setImage(MultipartFile image) {
-        this.image = image;
-    }
-    
     
 }

@@ -12,7 +12,6 @@ public class KandangRequest {
     private String idKandang;
     
     private Peternak idPeternak;
-    private String namaPeternak;
     private String luas;
     private String kapasitas;
     private String nilaiBangunan;
@@ -21,8 +20,16 @@ public class KandangRequest {
     private String kecamatan;
     private String kabupaten;
     private String provinsi;
-    private MultipartFile image;
+    private MultipartFile file;
+    
+    public MultipartFile getFile() {
+        return file;
+    }
 
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
+    
     public String getIdKandang() {
         return idKandang;
     }
@@ -37,14 +44,6 @@ public class KandangRequest {
 
     public void setIdPeternak(Peternak idPeternak) {
         this.idPeternak = idPeternak;
-    }
-
-    public String getNamaPeternak() {
-        return namaPeternak;
-    }
-
-    public void setNamaPeternak(String namaPeternak) {
-        this.namaPeternak = namaPeternak;
     }
 
     public String getLuas() {
@@ -111,13 +110,4 @@ public class KandangRequest {
         this.provinsi = provinsi;
     }
 
-    public MultipartFile getImage() {
-        return image;
-    }
-
-    public void setImage(MultipartFile image) {
-        this.image = image;
-    }
-    
-    
 }

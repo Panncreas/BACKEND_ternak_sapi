@@ -7,7 +7,6 @@ public class KandangResponse {
     private String idKandang;
     
     private Peternak idPeternak;
-    private String namaPeternak;
     private String luas;
     private String kapasitas;
     private String nilaiBangunan;
@@ -20,6 +19,28 @@ public class KandangResponse {
     private Instant updatedAt;
     private Instant createdAt;
 
+    public KandangResponse() {}
+
+    public KandangResponse(String idKandang, Peternak idPeternak, String luas, String kapasitas, String nilaiBangunan, 
+            String alamat, String desa, String kecamatan, String kabupaten, String provinsi,
+            String fotoKandang, Instant updatedAt, Instant createdAt) {
+        this.idKandang = idKandang;
+        this.idPeternak = idPeternak;
+        this.luas = luas;
+        this.kapasitas = kapasitas;
+        this.nilaiBangunan = nilaiBangunan;
+        this.alamat = alamat;
+        this.desa = desa;
+        this.kecamatan = kecamatan;
+        this.kabupaten = kabupaten;
+        this.provinsi = provinsi;
+        this.fotoKandang = fotoKandang;
+        this.updatedAt = updatedAt;
+        this.createdAt = createdAt;
+    }
+    
+
+    
     public String getIdKandang() {
         return idKandang;
     }
@@ -34,14 +55,6 @@ public class KandangResponse {
 
     public void setIdPeternak(Peternak idPeternak) {
         this.idPeternak = idPeternak;
-    }
-
-    public String getNamaPeternak() {
-        return namaPeternak;
-    }
-
-    public void setNamaPeternak(String namaPeternak) {
-        this.namaPeternak = namaPeternak;
     }
 
     public String getLuas() {

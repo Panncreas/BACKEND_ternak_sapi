@@ -15,9 +15,7 @@ public class HewanResponse {
     private String kabupaten;
     private String kecamatan;
     private String desa;
-    private String namaPeternak;
     private Peternak idPeternak;
-    private String nikPeternak;
     private String spesies;
     private String sex;
     private String umur;
@@ -32,7 +30,7 @@ public class HewanResponse {
     }
     
     public HewanResponse( String kodeEartagNasional, String noKartuTernakTernak, String provinsi, String kabupaten, String kecamatan,
-                        String desa, String namaPeternak, Peternak idPeternak, String nikPeternak, String spesies, String sex, String umur, 
+                        String desa,Peternak idPeternak, String spesies, String sex, String umur, 
                         String identifikasiHewan, String petugasPendaftar, Instant updatedAt, Instant createdAt, String fotoHewan) {
         
         
@@ -42,9 +40,7 @@ public class HewanResponse {
         this.kabupaten = kabupaten;
         this.kecamatan = kecamatan;
         this.desa = desa;
-        this.namaPeternak = namaPeternak;
         this.idPeternak = idPeternak;
-        this.nikPeternak = nikPeternak;
         this.spesies = spesies;
         this.sex = sex;
         this.umur = umur;
@@ -105,28 +101,12 @@ public class HewanResponse {
         this.desa = desa;
     }
 
-    public String getNamaPeternak() {
-        return namaPeternak;
-    }
-
-    public void setNamaPeternak(String namaPeternak) {
-        this.namaPeternak = namaPeternak;
-    }
-
     public Peternak getIdPeternak() {
         return idPeternak;
     }
 
     public void setIdPeternak(Peternak idPeternak) {
         this.idPeternak = idPeternak;
-    }
-
-    public String getNikPeternak() {
-        return nikPeternak;
-    }
-
-    public void setNikPeternak(String nikPeternak) {
-        this.nikPeternak = nikPeternak;
     }
 
     public String getSpesies() {

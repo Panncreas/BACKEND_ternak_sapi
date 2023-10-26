@@ -19,13 +19,11 @@ public class Hewan extends UserDateAudit {
     private String kabupaten;
     private String kecamatan;
     private String desa;
-    private String namaPeternak;
     
     @ManyToOne
     @JoinColumn(name = "idPeternak", nullable = false)
     @JsonIgnore
     private Peternak idPeternak;
-    private String nikPeternak;
     private String spesies;
     private String sex;
     private String umur;
@@ -42,7 +40,7 @@ public class Hewan extends UserDateAudit {
     }
 
     public Hewan(String noKartuTernak,String kodeEartagNasional, String provinsi, String kabupaten, String kecamatan,
-                        String desa, String namaPeternak, Peternak idPeternak, String nikPeternak, String spesies, String sex, String umur, 
+                        String desa,  Peternak idPeternak, String spesies, String sex, String umur, 
                         String identifikasiHewan, String petugasPendaftar, String fotoHewan) {
         
         this.noKartuTernak = noKartuTernak;
@@ -51,9 +49,7 @@ public class Hewan extends UserDateAudit {
         this.kabupaten = kabupaten;
         this.kecamatan = kecamatan;
         this.desa = desa;
-        this.namaPeternak = namaPeternak;
         this.idPeternak = idPeternak;
-        this.nikPeternak = nikPeternak;
         this.spesies = spesies;
         this.sex = sex;
         this.umur = umur;
@@ -111,29 +107,13 @@ public class Hewan extends UserDateAudit {
     public void setDesa(String desa) {
         this.desa = desa;
     }
-
-    public String getNamaPeternak() {
-        return namaPeternak;
-    }
-
-    public void setNamaPeternak(String namaPeternak) {
-        this.namaPeternak = namaPeternak;
-    }
-
+    
     public Peternak getIdPeternak() {
         return idPeternak;
     }
 
     public void setIdPeternak(Peternak idPeternak) {
         this.idPeternak = idPeternak;
-    }
-
-    public String getNikPeternak() {
-        return nikPeternak;
-    }
-
-    public void setNikPeternak(String nikPeternak) {
-        this.nikPeternak = nikPeternak;
     }
 
     public String getSpesies() {

@@ -10,6 +10,5 @@ import java.util.Optional;
 
 @Repository
 public interface KandangRepository extends JpaRepository<Kandang, String> {
-    Optional<Kandang> findByNamaPeternak(String namaPeternak);
     Optional<Kandang> findById(String idKandang);
 }

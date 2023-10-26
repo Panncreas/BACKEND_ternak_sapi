@@ -48,8 +48,8 @@ public class KandangController {
 
     @PostMapping
     @Secured("ROLE_ADMINISTRATOR")
-    public ResponseEntity<?> createKandang(@CurrentUser UserPrincipal currentUser, @Valid @RequestBody KandangRequest kandangRequest, 
-            @RequestParam( "image") MultipartFile file) throws IOException{
+    public ResponseEntity<?> createKandang(@CurrentUser UserPrincipal currentUser, @Valid @ModelAttribute KandangRequest kandangRequest, 
+            @RequestParam( "file") MultipartFile file) throws IOException{
         Kandang kandang = kandangService.createKandang(currentUser, kandangRequest, file);
 
         URI location = ServletUriComponentsBuilder

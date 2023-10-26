@@ -50,7 +50,7 @@ public class HewanController {
     @PostMapping
 @Secured("ROLE_ADMINISTRATOR")
 public ResponseEntity<?> createHewan(
-        @CurrentUser UserPrincipal currentUser,@Valid @ModelAttribute HewanRequest hewanRequest, @RequestParam( "image") MultipartFile file
+        @CurrentUser UserPrincipal currentUser,@Valid @ModelAttribute HewanRequest hewanRequest, @RequestParam( "file") MultipartFile file
         )throws IOException {
         Hewan hewan = hewanService.createHewan(currentUser, hewanRequest, file);
         URI location = ServletUriComponentsBuilder

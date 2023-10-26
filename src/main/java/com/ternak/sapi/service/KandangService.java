@@ -68,7 +68,6 @@ public class KandangService {
             KandangResponse kandangResponse = new KandangResponse();
             kandangResponse.setIdKandang(asResponse.getIdKandang());
             kandangResponse.setIdPeternak(asResponse.getIdPeternak());
-            kandangResponse.setNamaPeternak(asResponse.getNamaPeternak());
             kandangResponse.setLuas(asResponse.getLuas());
             kandangResponse.setKapasitas(asResponse.getKapasitas());
             kandangResponse.setNilaiBangunan(asResponse.getNilaiBangunan());
@@ -77,6 +76,7 @@ public class KandangService {
             kandangResponse.setKecamatan(asResponse.getKecamatan());
             kandangResponse.setKabupaten(asResponse.getKabupaten());
             kandangResponse.setProvinsi(asResponse.getProvinsi());
+            kandangResponse.setFotoKandang(asResponse.getFotoKandang());
             kandangResponse.setCreatedAt(asResponse.getCreatedAt());
             kandangResponse.setUpdatedAt(asResponse.getUpdatedAt());
             return kandangResponse;
@@ -86,7 +86,7 @@ public class KandangService {
                 kandang.getSize(), kandang.getTotalElements(), kandang.getTotalPages(), kandang.isLast(), 200);
     }
 
-    public Kandang createKandang(UserPrincipal currentUser,@Valid KandangRequest kandangRequest, MultipartFile file) {
+    public Kandang createKandang(UserPrincipal currentUser,@Valid KandangRequest kandangRequest, MultipartFile file) throws IOException {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         try {
             // Check if the file's name contains invalid characters
@@ -95,11 +95,11 @@ public class KandangService {
             }
             
         Path targetLocation = this.fileStorageLocation.resolve(fileName);
-            Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
+        Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
+        
         Kandang kandang = new Kandang();
         kandang.setIdKandang(kandangRequest.getIdKandang());
         kandang.setIdPeternak(kandangRequest.getIdPeternak());
-        kandang.setNamaPeternak(kandangRequest.getNamaPeternak());
         kandang.setLuas(kandangRequest.getLuas());
         kandang.setKapasitas(kandangRequest.getKapasitas());
         kandang.setNilaiBangunan(kandangRequest.getNilaiBangunan());
@@ -110,6 +110,7 @@ public class KandangService {
         kandang.setProvinsi(kandangRequest.getProvinsi());
         kandang.setCreatedBy(currentUser.getId());
         kandang.setUpdatedBy(currentUser.getId());
+        kandang.setFotoKandang(fileName);
         return kandangRepository.save(kandang);
         } catch (IOException ex) {
             throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
@@ -123,7 +124,6 @@ public class KandangService {
         KandangResponse kandangResponse = new KandangResponse();
         kandangResponse.setIdKandang(kandang.getIdKandang());
         kandangResponse.setIdPeternak(kandang.getIdPeternak());
-        kandangResponse.setNamaPeternak(kandang.getNamaPeternak());
         kandangResponse.setLuas(kandang.getLuas());
         kandangResponse.setKapasitas(kandang.getKapasitas());
         kandangResponse.setNilaiBangunan(kandang.getNilaiBangunan());
@@ -151,7 +151,6 @@ public class KandangService {
         return kandangRepository.findById(id).map(kandang -> {
             kandang.setIdKandang(kandangReq.getIdKandang());
             kandang.setIdPeternak(kandangReq.getIdPeternak());
-            kandang.setNamaPeternak(kandangReq.getNamaPeternak());
             kandang.setLuas(kandangReq.getLuas());
             kandang.setKapasitas(kandangReq.getKapasitas());
             kandang.setNilaiBangunan(kandangReq.getNilaiBangunan());
