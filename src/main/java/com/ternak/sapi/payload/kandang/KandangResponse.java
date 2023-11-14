@@ -16,6 +16,8 @@ public class KandangResponse {
     private String kabupaten;
     private String provinsi;
     private String fotoKandang;
+    private String latitude;
+    private String longitude;
     private Instant updatedAt;
     private Instant createdAt;
 
@@ -23,7 +25,7 @@ public class KandangResponse {
 
     public KandangResponse(String idKandang, Peternak idPeternak, String luas, String kapasitas, String nilaiBangunan, 
             String alamat, String desa, String kecamatan, String kabupaten, String provinsi,
-            String fotoKandang, Instant updatedAt, Instant createdAt) {
+            String fotoKandang, Instant updatedAt, Instant createdAt, String latitude, String longitude) {
         this.idKandang = idKandang;
         this.idPeternak = idPeternak;
         this.luas = luas;
@@ -35,6 +37,8 @@ public class KandangResponse {
         this.kabupaten = kabupaten;
         this.provinsi = provinsi;
         this.fotoKandang = fotoKandang;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
     }
@@ -143,6 +147,22 @@ public class KandangResponse {
 
     public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
     
     

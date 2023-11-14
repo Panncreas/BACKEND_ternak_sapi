@@ -86,6 +86,8 @@ public class HewanService {
             hewanResponse.setPetugasPendaftar(asResponse.getPetugasPendaftar());
             hewanResponse.setTanggalTerdaftar(asResponse.getTanggalTerdaftar());
             hewanResponse.setFotoHewan(asResponse.getFotoHewan());
+            hewanResponse.setLatitude(asResponse.getLatitude());
+            hewanResponse.setLongitude(asResponse.getLongitude());
             hewanResponse.setCreatedAt(asResponse.getCreatedAt());
             hewanResponse.setUpdatedAt(asResponse.getUpdatedAt());
             return hewanResponse;
@@ -123,6 +125,8 @@ public class HewanService {
             hewan.setCreatedBy(currentUser.getId());
             hewan.setUpdatedBy(currentUser.getId());
             hewan.setFotoHewan(fileName);
+            hewan.setLatitude(hewanRequest.getLatitude());
+            hewan.setLongitude(hewanRequest.getLongitude());
             return hewanRepository.save(hewan);
         } catch (IOException ex) {
             throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
@@ -148,6 +152,8 @@ public class HewanService {
         hewanResponse.setPetugasPendaftar(hewan.getPetugasPendaftar());
         hewanResponse.setTanggalTerdaftar(hewan.getTanggalTerdaftar());
         hewanResponse.setFotoHewan(hewan.getFotoHewan());
+        hewanResponse.setLatitude(hewan.getLatitude());
+        hewanResponse.setLongitude(hewan.getLongitude());
         hewanResponse.setCreatedAt(hewan.getCreatedAt());
         hewanResponse.setUpdatedAt(hewan.getUpdatedAt());
         return hewanResponse;
@@ -179,6 +185,8 @@ public class HewanService {
             hewan.setIdentifikasiHewan(hewanReq.getIdentifikasiHewan());
             hewan.setPetugasPendaftar(hewanReq.getPetugasPendaftar());
             hewan.setTanggalTerdaftar(hewanReq.getTanggalTerdaftar());
+            hewan.setLatitude(hewanReq.getLatitude());
+            hewan.setLongitude(hewanReq.getLongitude());
             hewan.setUpdatedBy(currentUser.getId());
             return hewanRepository.save(hewan);
         }).orElseThrow(() -> new ResourceNotFoundException("Hewan" , "id" , id));

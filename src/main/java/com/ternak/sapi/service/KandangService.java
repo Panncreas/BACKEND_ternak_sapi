@@ -77,6 +77,8 @@ public class KandangService {
             kandangResponse.setKabupaten(asResponse.getKabupaten());
             kandangResponse.setProvinsi(asResponse.getProvinsi());
             kandangResponse.setFotoKandang(asResponse.getFotoKandang());
+            kandangResponse.setLatitude(asResponse.getLatitude());
+            kandangResponse.setLongitude(asResponse.getLongitude());
             kandangResponse.setCreatedAt(asResponse.getCreatedAt());
             kandangResponse.setUpdatedAt(asResponse.getUpdatedAt());
             return kandangResponse;
@@ -111,6 +113,8 @@ public class KandangService {
         kandang.setCreatedBy(currentUser.getId());
         kandang.setUpdatedBy(currentUser.getId());
         kandang.setFotoKandang(fileName);
+        kandang.setLatitude(kandangRequest.getLatitude());
+        kandang.setLongitude(kandangRequest.getLongitude());
         return kandangRepository.save(kandang);
         } catch (IOException ex) {
             throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
@@ -132,6 +136,9 @@ public class KandangService {
         kandangResponse.setKecamatan(kandang.getKecamatan());
         kandangResponse.setKabupaten(kandang.getKabupaten());
         kandangResponse.setProvinsi(kandang.getProvinsi());
+        kandangResponse.setFotoKandang(kandang.getFotoKandang());
+        kandangResponse.setLatitude(kandang.getLatitude());
+        kandangResponse.setLongitude(kandang.getLongitude());
         kandangResponse.setCreatedAt(kandang.getCreatedAt());
         kandangResponse.setUpdatedAt(kandang.getUpdatedAt());
         return kandangResponse;
@@ -159,6 +166,8 @@ public class KandangService {
             kandang.setKecamatan(kandangReq.getKecamatan());
             kandang.setKabupaten(kandangReq.getKabupaten());
             kandang.setProvinsi(kandangReq.getProvinsi());
+            kandang.setLatitude(kandangReq.getLatitude());
+            kandang.setLongitude(kandangReq.getLongitude());
             kandang.setCreatedBy(currentUser.getId());
             kandang.setUpdatedBy(currentUser.getId());
             return kandangRepository.save(kandang);

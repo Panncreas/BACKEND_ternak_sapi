@@ -23,6 +23,8 @@ public class HewanResponse {
     private String petugasPendaftar;
     private String tanggalTerdaftar;
     private String fotoHewan;
+    private String latitude;
+    private String longitude;
     private Instant updatedAt;
     private Instant createdAt;
 
@@ -31,7 +33,8 @@ public class HewanResponse {
     
     public HewanResponse( String kodeEartagNasional, String noKartuTernakTernak, String provinsi, String kabupaten, String kecamatan,
                         String desa,Peternak idPeternak, String spesies, String sex, String umur, 
-                        String identifikasiHewan, String petugasPendaftar, Instant updatedAt, Instant createdAt, String fotoHewan) {
+                        String identifikasiHewan, String petugasPendaftar, Instant updatedAt, Instant createdAt, String fotoHewan, 
+                        String latitude, String longitude) {
         
         
         this.kodeEartagNasional = kodeEartagNasional;
@@ -49,6 +52,8 @@ public class HewanResponse {
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
         this.fotoHewan = fotoHewan;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     //SETTER DAN GETTER
@@ -180,4 +185,22 @@ public class HewanResponse {
     public void setFotoHewan(String fotoHewan) {
         this.fotoHewan = fotoHewan;
     }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+    
+    
 }

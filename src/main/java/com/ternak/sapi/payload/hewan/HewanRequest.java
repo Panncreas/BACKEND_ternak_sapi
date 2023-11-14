@@ -23,6 +23,8 @@ public class HewanRequest {
     private String petugasPendaftar;
     private String tanggalTerdaftar;
     private MultipartFile file;
+    private String latitude;
+    private String longitude;
     
 
     public MultipartFile getFile() {
@@ -136,5 +138,23 @@ public class HewanRequest {
     public void setTanggalTerdaftar(String tanggalTerdaftar) {
         this.tanggalTerdaftar = tanggalTerdaftar;
     }   
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+    
+    
     
 }
