@@ -88,17 +88,7 @@ public class KandangService {
                 kandang.getSize(), kandang.getTotalElements(), kandang.getTotalPages(), kandang.isLast(), 200);
     }
 
-    public Kandang createKandang(UserPrincipal currentUser,@Valid KandangRequest kandangRequest, MultipartFile file) throws IOException {
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-        try {
-            // Check if the file's name contains invalid characters
-            if(fileName.contains("..")) {
-                throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
-            }
-            
-        Path targetLocation = this.fileStorageLocation.resolve(fileName);
-        Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
-        
+    public Kandang createKandang(UserPrincipal currentUser, @Valid KandangRequest kandangRequest, MultipartFile file) throws IOException {
         Kandang kandang = new Kandang();
         kandang.setIdKandang(kandangRequest.getIdKandang());
         kandang.setIdPeternak(kandangRequest.getIdPeternak());
@@ -112,14 +102,29 @@ public class KandangService {
         kandang.setProvinsi(kandangRequest.getProvinsi());
         kandang.setCreatedBy(currentUser.getId());
         kandang.setUpdatedBy(currentUser.getId());
-        kandang.setFotoKandang(fileName);
         kandang.setLatitude(kandangRequest.getLatitude());
         kandang.setLongitude(kandangRequest.getLongitude());
-        return kandangRepository.save(kandang);
-        } catch (IOException ex) {
-            throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
+
+        if (file != null && !file.isEmpty()) {
+            String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+            try {
+                // Check if the file's name contains invalid characters
+                if (fileName.contains("..")) {
+                    throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
+                }
+
+                Path targetLocation = this.fileStorageLocation.resolve(fileName);
+                Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
+
+                kandang.setFotoKandang(fileName);
+            } catch (IOException ex) {
+                throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
+            }
         }
+
+        return kandangRepository.save(kandang);
     }
+
 
     public KandangResponse getKandangById(String kandangId) {
         Kandang kandang = kandangRepository.findById(kandangId).orElseThrow(

@@ -47,10 +47,10 @@ public class HewanController {
     }
 
     //diganti request
-    @PostMapping
+@PostMapping
 @Secured("ROLE_ADMINISTRATOR")
 public ResponseEntity<?> createHewan(
-        @CurrentUser UserPrincipal currentUser,@Valid @ModelAttribute HewanRequest hewanRequest, @RequestParam( "file") MultipartFile file
+        @CurrentUser UserPrincipal currentUser,@Valid @ModelAttribute HewanRequest hewanRequest, @RequestParam(value = "file", required = false) MultipartFile file
         )throws IOException {
         Hewan hewan = hewanService.createHewan(currentUser, hewanRequest, file);
         URI location = ServletUriComponentsBuilder
