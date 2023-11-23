@@ -64,8 +64,9 @@ public ResponseEntity<?> createHewan(
 
 @PutMapping("/{hewanId}")
 @Secured("ROLE_ADMINISTRATOR")
- public ResponseEntity<?> updateKandangById(@CurrentUser UserPrincipal currentUser, @PathVariable (value = "hewanId") String hewanId, @Valid @RequestBody HewanRequest hewanRequest) {
-        Hewan hewan = hewanService.updateHewan(hewanRequest, hewanId, currentUser);
+ public ResponseEntity<?> updateKandangById(@CurrentUser UserPrincipal currentUser, @PathVariable (value = "hewanId") String hewanId, @Valid HewanRequest hewanRequest,
+ @RequestParam(value = "file", required = false) MultipartFile file)throws IOException {
+        Hewan hewan = hewanService.updateHewan(hewanRequest, hewanId, currentUser, file);
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{hewanId}")

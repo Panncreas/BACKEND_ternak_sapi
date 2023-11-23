@@ -29,13 +29,17 @@ public class Kandang extends UserDateAudit {
     private String kabupaten;
     private String provinsi;
     private String fotoKandang;
+    private String fotoType;
+    
+    @Lob
+    private byte[] data;
     private String latitude;
     private String longitude;
     
     public Kandang(){}
     public Kandang(String idKandang, Peternak idPeternak, String luas, 
                    String kapasitas, String nilaiBangunan, String alamat, String desa,
-                   String kecamatan, String kabupaten, String provinsi, String fotoKandang,
+                   String kecamatan, String kabupaten, String provinsi, String fotoKandang, String fotoType, byte[] data,
                    String latitude, String longitude){
         this.idKandang = idKandang;
         this.idPeternak = idPeternak;
@@ -48,6 +52,8 @@ public class Kandang extends UserDateAudit {
         this.kabupaten = kabupaten;
         this.provinsi = provinsi;
         this.fotoKandang = fotoKandang;
+        this.fotoType = fotoType;
+        this.data = data;
         this.latitude = latitude;
         this.longitude = longitude;
     }
@@ -139,6 +145,24 @@ public class Kandang extends UserDateAudit {
     public void setFotoKandang(String fotoKandang) {
         this.fotoKandang = fotoKandang;
     }
+
+    public String getFotoType() {
+        return fotoType;
+    }
+
+    public void setFotoType(String fotoType) {
+        this.fotoType = fotoType;
+    }
+
+    public byte[] getData() {
+        return data;
+    }
+
+    public void setData(byte[] data) {
+        this.data = data;
+    }
+    
+    
 
     public String getLatitude() {
         return latitude;

@@ -31,6 +31,11 @@ public class Hewan extends UserDateAudit {
     private String petugasPendaftar;
     private String tanggalTerdaftar;
     private String fotoHewan;
+    private String fotoType;
+    
+    @Lob
+    private byte[] data;
+    
     private String latitude;
     private String longitude;
     
@@ -43,7 +48,7 @@ public class Hewan extends UserDateAudit {
 
     public Hewan(String noKartuTernak,String kodeEartagNasional, String provinsi, String kabupaten, String kecamatan,
                         String desa,  Peternak idPeternak, String spesies, String sex, String umur, 
-                        String identifikasiHewan, String petugasPendaftar, String fotoHewan, String latitude, String longitude) {
+                        String identifikasiHewan, String petugasPendaftar, String fotoHewan, String fotoType, byte[] data, String latitude, String longitude) {
         
         this.noKartuTernak = noKartuTernak;
         this.kodeEartagNasional = kodeEartagNasional;
@@ -58,6 +63,8 @@ public class Hewan extends UserDateAudit {
         this.identifikasiHewan = identifikasiHewan;
         this.petugasPendaftar = petugasPendaftar;
         this.fotoHewan = fotoHewan;
+        this.fotoType = fotoType;
+        this.data = data;
         this.latitude = latitude;
         this.longitude = longitude;
     }
@@ -176,6 +183,22 @@ public class Hewan extends UserDateAudit {
         this.fotoHewan = fotoHewan;
     }
 
+    public String getFotoType() {
+        return fotoType;
+    }
+
+    public void setFotoType(String fotoType) {
+        this.fotoType = fotoType;
+    }
+
+    public byte[] getData() {
+        return data;
+    }
+
+    public void setData(byte[] data) {
+        this.data = data;
+    }
+    
     public String getLatitude() {
         return latitude;
     }

@@ -2,6 +2,7 @@ package com.ternak.sapi.payload.kandang;
 
 import com.ternak.sapi.model.Peternak;
 import java.time.Instant;
+import javax.persistence.Lob;
 
 public class KandangResponse {
     private String idKandang;
@@ -16,6 +17,11 @@ public class KandangResponse {
     private String kabupaten;
     private String provinsi;
     private String fotoKandang;
+    private String fotoType;
+    
+    @Lob
+    private byte[] data;
+    
     private String latitude;
     private String longitude;
     private Instant updatedAt;
@@ -25,7 +31,7 @@ public class KandangResponse {
 
     public KandangResponse(String idKandang, Peternak idPeternak, String luas, String kapasitas, String nilaiBangunan, 
             String alamat, String desa, String kecamatan, String kabupaten, String provinsi,
-            String fotoKandang, Instant updatedAt, Instant createdAt, String latitude, String longitude) {
+            String fotoKandang,String fotoType, byte[] data, Instant updatedAt, Instant createdAt, String latitude, String longitude) {
         this.idKandang = idKandang;
         this.idPeternak = idPeternak;
         this.luas = luas;
@@ -37,6 +43,8 @@ public class KandangResponse {
         this.kabupaten = kabupaten;
         this.provinsi = provinsi;
         this.fotoKandang = fotoKandang;
+        this.fotoType = fotoType;
+        this.data = data;
         this.latitude = latitude;
         this.longitude = longitude;
         this.updatedAt = updatedAt;
@@ -131,6 +139,22 @@ public class KandangResponse {
 
     public void setFotoKandang(String fotoKandang) {
         this.fotoKandang = fotoKandang;
+    }
+
+    public String getFotoType() {
+        return fotoType;
+    }
+
+    public void setFotoType(String fotoType) {
+        this.fotoType = fotoType;
+    }
+
+    public byte[] getData() {
+        return data;
+    }
+
+    public void setData(byte[] data) {
+        this.data = data;
     }
     
     public Instant getUpdatedAt() {

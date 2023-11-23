@@ -77,6 +77,8 @@ public class KandangService {
             kandangResponse.setKabupaten(asResponse.getKabupaten());
             kandangResponse.setProvinsi(asResponse.getProvinsi());
             kandangResponse.setFotoKandang(asResponse.getFotoKandang());
+            kandangResponse.setFotoType(asResponse.getFotoType());
+            kandangResponse.setData(asResponse.getData());
             kandangResponse.setLatitude(asResponse.getLatitude());
             kandangResponse.setLongitude(asResponse.getLongitude());
             kandangResponse.setCreatedAt(asResponse.getCreatedAt());
@@ -117,6 +119,8 @@ public class KandangService {
                 Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 
                 kandang.setFotoKandang(fileName);
+                kandang.setFotoType(file.getContentType());
+                kandang.setData(file.getBytes());
             } catch (IOException ex) {
                 throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
             }
@@ -159,8 +163,27 @@ public class KandangService {
         }
     }
 
-    public Kandang updateKandang(KandangRequest kandangReq, String id, UserPrincipal currentUser){
+    public Kandang updateKandang(KandangRequest kandangReq, String id, UserPrincipal currentUser, MultipartFile file) throws IOException{
         return kandangRepository.findById(id).map(kandang -> {
+            if (file != null && !file.isEmpty()) {
+                String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+                try {
+                    // Check if the file's name contains invalid characters
+                    if (fileName.contains("..")) {
+                        throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
+                    }
+
+                    Path targetLocation = this.fileStorageLocation.resolve(fileName);
+                    Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
+
+                    kandang.setFotoKandang(fileName);
+                    kandang.setFotoType(file.getContentType());
+                    kandang.setData(file.getBytes());
+                } catch (IOException ex) {
+                    throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
+                }
+            }
+            
             kandang.setIdKandang(kandangReq.getIdKandang());
             kandang.setIdPeternak(kandangReq.getIdPeternak());
             kandang.setLuas(kandangReq.getLuas());

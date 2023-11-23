@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.Instant;
+import javax.persistence.Lob;
 
 public class HewanResponse {
     private String kodeEartagNasional;
@@ -23,6 +24,11 @@ public class HewanResponse {
     private String petugasPendaftar;
     private String tanggalTerdaftar;
     private String fotoHewan;
+    private String fotoType;
+    
+    @Lob
+    private byte[] data;
+    
     private String latitude;
     private String longitude;
     private Instant updatedAt;
@@ -33,7 +39,7 @@ public class HewanResponse {
     
     public HewanResponse( String kodeEartagNasional, String noKartuTernakTernak, String provinsi, String kabupaten, String kecamatan,
                         String desa,Peternak idPeternak, String spesies, String sex, String umur, 
-                        String identifikasiHewan, String petugasPendaftar, Instant updatedAt, Instant createdAt, String fotoHewan, 
+                        String identifikasiHewan, String petugasPendaftar, Instant updatedAt, Instant createdAt, String fotoHewan, String fotoType, byte[] data, 
                         String latitude, String longitude) {
         
         
@@ -52,6 +58,8 @@ public class HewanResponse {
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
         this.fotoHewan = fotoHewan;
+        this.fotoType = fotoType;
+        this.data = data;
         this.latitude = latitude;
         this.longitude = longitude;
     }
@@ -185,6 +193,24 @@ public class HewanResponse {
     public void setFotoHewan(String fotoHewan) {
         this.fotoHewan = fotoHewan;
     }
+
+    public String getFotoType() {
+        return fotoType;
+    }
+
+    public void setFotoType(String fotoType) {
+        this.fotoType = fotoType;
+    }
+
+    public byte[] getData() {
+        return data;
+    }
+
+    public void setData(byte[] data) {
+        this.data = data;
+    }
+    
+    
 
     public String getLatitude() {
         return latitude;

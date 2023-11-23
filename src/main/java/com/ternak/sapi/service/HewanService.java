@@ -86,6 +86,8 @@ public class HewanService {
             hewanResponse.setPetugasPendaftar(asResponse.getPetugasPendaftar());
             hewanResponse.setTanggalTerdaftar(asResponse.getTanggalTerdaftar());
             hewanResponse.setFotoHewan(asResponse.getFotoHewan());
+            hewanResponse.setFotoType(asResponse.getFotoType());
+            hewanResponse.setData(asResponse.getData());
             hewanResponse.setLatitude(asResponse.getLatitude());
             hewanResponse.setLongitude(asResponse.getLongitude());
             hewanResponse.setCreatedAt(asResponse.getCreatedAt());
@@ -129,6 +131,8 @@ public class HewanService {
                 Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 
                 hewan.setFotoHewan(fileName);
+                hewan.setFotoType(file.getContentType());
+                hewan.setData(file.getBytes());
             } catch (IOException ex) {
                 throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
             }
@@ -174,9 +178,28 @@ public class HewanService {
         }
     }
 
-    public Hewan updateHewan(HewanRequest hewanReq, String id,  UserPrincipal currentUser) {
-       
+    public Hewan updateHewan(HewanRequest hewanReq, String id, UserPrincipal currentUser, MultipartFile file) throws IOException {
         return hewanRepository.findById(id).map(hewan -> {
+            // Check if a file is provided and not empty
+            if (file != null && !file.isEmpty()) {
+                String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+                try {
+                    // Check if the file's name contains invalid characters
+                    if (fileName.contains("..")) {
+                        throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
+                    }
+
+                    Path targetLocation = this.fileStorageLocation.resolve(fileName);
+                    Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
+
+                    hewan.setFotoHewan(fileName);
+                    hewan.setFotoType(file.getContentType());
+                    hewan.setData(file.getBytes());
+                } catch (IOException ex) {
+                    throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
+                }
+            }
+
             hewan.setNoKartuTernak(hewanReq.getNoKartuTernak());
             hewan.setKodeEartagNasional(hewanReq.getKodeEartagNasional());
             hewan.setProvinsi(hewanReq.getProvinsi());
@@ -193,8 +216,9 @@ public class HewanService {
             hewan.setLatitude(hewanReq.getLatitude());
             hewan.setLongitude(hewanReq.getLongitude());
             hewan.setUpdatedBy(currentUser.getId());
+
             return hewanRepository.save(hewan);
-        }).orElseThrow(() -> new ResourceNotFoundException("Hewan" , "id" , id));
+        }).orElseThrow(() -> new ResourceNotFoundException("Hewan", "id", id));
     }
 
     public void deleteHewanById(String id){

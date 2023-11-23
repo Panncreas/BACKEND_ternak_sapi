@@ -62,8 +62,9 @@ public class KandangController {
 
     @PutMapping("/{kandangId}")
     @Secured("ROLE_ADMINISTRATOR")
-    public ResponseEntity<?> updateKandangById(@CurrentUser UserPrincipal currentUser, @PathVariable (value = "kandangId") String kandangId, @Valid @RequestBody KandangRequest kandangRequest) {
-        Kandang kandang = kandangService.updateKandang(kandangRequest, kandangId, currentUser);
+    public ResponseEntity<?> updateKandangById(@CurrentUser UserPrincipal currentUser, @PathVariable (value = "kandangId") String kandangId, @Valid KandangRequest kandangRequest,
+            @RequestParam(value = "file", required = false) MultipartFile file) throws IOException {
+        Kandang kandang = kandangService.updateKandang(kandangRequest, kandangId, currentUser, file);
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{kandangId}")
