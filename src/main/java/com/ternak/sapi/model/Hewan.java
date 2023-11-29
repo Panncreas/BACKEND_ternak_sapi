@@ -19,6 +19,7 @@ public class Hewan extends UserDateAudit {
     private String kabupaten;
     private String kecamatan;
     private String desa;
+    private String alamat;
     
     @ManyToOne
     @JoinColumn(name = "idPeternak", nullable = false)
@@ -47,7 +48,7 @@ public class Hewan extends UserDateAudit {
     }
 
     public Hewan(String noKartuTernak,String kodeEartagNasional, String provinsi, String kabupaten, String kecamatan,
-                        String desa,  Peternak idPeternak, String spesies, String sex, String umur, 
+                        String desa, String alamat, Peternak idPeternak, String spesies, String sex, String umur, 
                         String identifikasiHewan, String petugasPendaftar, String fotoHewan, String fotoType, byte[] data, String latitude, String longitude) {
         
         this.noKartuTernak = noKartuTernak;
@@ -56,6 +57,7 @@ public class Hewan extends UserDateAudit {
         this.kabupaten = kabupaten;
         this.kecamatan = kecamatan;
         this.desa = desa;
+        this.alamat = alamat;
         this.idPeternak = idPeternak;
         this.spesies = spesies;
         this.sex = sex;
@@ -117,6 +119,14 @@ public class Hewan extends UserDateAudit {
 
     public void setDesa(String desa) {
         this.desa = desa;
+    }
+
+    public String getAlamat() {
+        return alamat;
+    }
+
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
     }
     
     public Peternak getIdPeternak() {

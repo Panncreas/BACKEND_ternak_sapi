@@ -15,6 +15,7 @@ public class HewanRequest {
     private String kabupaten;
     private String kecamatan;
     private String desa;
+    private String alamat;
     private Peternak idPeternak;
     private String spesies;
     private String sex;
@@ -83,6 +84,14 @@ public class HewanRequest {
         this.desa = desa;
     }
 
+    public String getAlamat() {
+        return alamat;
+    }
+
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
+    }
+    
     public Peternak getIdPeternak() {
         return idPeternak;
     }

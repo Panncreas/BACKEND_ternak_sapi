@@ -21,31 +21,23 @@ public class Vaksin extends UserDateAudit {
     private String idVaksin;
 
     private String tanggalIB;
-
     private String lokasi;
-
+    
     @ManyToOne
     @JoinColumn(name = "idPeternak", nullable = false)
     @JsonIgnore
     private Peternak idPeternak;
     
     private String idHewan;
-    
     private String eartag;
-    
     private String ib1;
     private String ib2;
     private String ib3;
     private String ibLain;
-    
     private String idPejantan;
-    
     private String idPembuatan;
-    
     private String bangsaPejantan;
-    
     private String produsen;
-    
     private String inseminator;
 
     public Vaksin() {
@@ -55,7 +47,10 @@ public class Vaksin extends UserDateAudit {
         this.idVaksin = idVaksin;
     }
 
-    public Vaksin(String idVaksin, String tanggalIB, String lokasi, Peternak idPeternak, String idHewan, String eartag, String ib1, String ib2, String ib3, String ibLain, String idPejantan, String idPembuatan, String bangsaPejantan, String produsen, String inseminator) {
+    public Vaksin(String idVaksin, String tanggalIB, String lokasi, Peternak idPeternak, 
+                      String idHewan, String eartag, String ib1, String ib2, String ib3, String ibLain, 
+                      String idPejantan, String idPembuatan, String bangsaPejantan, 
+                      String produsen, String inseminator) {
         this.idVaksin = idVaksin;
         this.tanggalIB = tanggalIB;
         this.lokasi = lokasi;

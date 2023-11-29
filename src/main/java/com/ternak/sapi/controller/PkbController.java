@@ -38,7 +38,7 @@ public class PkbController {
     private static final Logger logger = LoggerFactory.getLogger(PkbController.class);
 
     @GetMapping
-    @Secured({"ROLE_ADMINISTRATOR", "ROLE_LECTURE"})
+    @Secured("ROLE_ADMINISTRATOR")
     public PagedResponse<PkbResponse> getPkb(@RequestParam(value = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
                                                        @RequestParam(value = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size) {
         return pkbService.getAllPkb(page, size);

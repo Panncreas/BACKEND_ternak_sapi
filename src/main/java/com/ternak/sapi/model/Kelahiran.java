@@ -21,7 +21,6 @@ public class Kelahiran extends UserDateAudit {
     @JoinColumn(name = "idPeternak", nullable = false)
     @JsonIgnore
     private Peternak idPeternak;
-    
     private String kartuTernakInduk;
     private String eartagInduk;
     private String idHewanInduk;
@@ -46,7 +45,10 @@ public class Kelahiran extends UserDateAudit {
         this.idKejadian = idKejadian;
     }
 
-    public Kelahiran(String idKejadian, String tanggalLaporan, String tanggalLahir, String lokasi, Peternak idPeternak, String kartuTernakInduk, String eartagInduk, String idHewanInduk, String spesiesInduk, String idPejantanStraw, String idBatchStraw, String produsenStraw, String spesiesPejantan, String jumlah, String kartuTernakAnak, String eartagAnak, String idHewanAnak, String jenisKelaminAnak, String kategori, String petugasPelapor, String urutanIb) {
+    public Kelahiran( String idKejadian, String tanggalLaporan, String tanggalLahir, String lokasi, Peternak idPeternak, String kartuTernakInduk, String eartagInduk, String idHewanInduk, 
+            String spesiesInduk, String idPejantanStraw, String idBatchStraw, String produsenStraw, String spesiesPejantan, 
+            String jumlah, String kartuTernakAnak, String eartagAnak, String idHewanAnak, String jenisKelaminAnak, 
+            String kategori, String petugasPelapor, String urutanIb) {
         this.idKejadian = idKejadian;
         this.tanggalLaporan = tanggalLaporan;
         this.tanggalLahir = tanggalLahir;
@@ -69,6 +71,8 @@ public class Kelahiran extends UserDateAudit {
         this.petugasPelapor = petugasPelapor;
         this.urutanIb = urutanIb;
     }
+    
+    
 
     public String getEartagAnak() {
         return eartagAnak;
@@ -126,6 +130,14 @@ public class Kelahiran extends UserDateAudit {
         this.idPejantanStraw = idPejantanStraw;
     }
 
+    public Peternak getIdPeternak() {
+        return idPeternak;
+    }
+
+    public void setIdPeternak(Peternak idPeternak) {
+        this.idPeternak = idPeternak;
+    }
+
     public String getJenisKelaminAnak() {
         return jenisKelaminAnak;
     }
@@ -174,14 +186,6 @@ public class Kelahiran extends UserDateAudit {
         this.lokasi = lokasi;
     }
 
-    public Peternak getIdPeternak() {
-        return idPeternak;
-    }
-
-    public void setIdPeternak(Peternak idPeternak) {
-        this.idPeternak = idPeternak;
-    }
-    
     public String getPetugasPelapor() {
         return petugasPelapor;
     }
@@ -189,8 +193,6 @@ public class Kelahiran extends UserDateAudit {
     public void setPetugasPelapor(String petugasPelapor) {
         this.petugasPelapor = petugasPelapor;
     }
-    
-    
 
     
 

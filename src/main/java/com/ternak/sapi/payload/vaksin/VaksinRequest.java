@@ -10,28 +10,18 @@ public class VaksinRequest {
     private String idVaksin;
 
     private String tanggalIB;
-
     private String lokasi;
-
     private Peternak idPeternak;
-    
     private String idHewan;
-    
     private String eartag;
-    
     private String ib1;
     private String ib2;
     private String ib3;
     private String ibLain;
-    
     private String idPejantan;
-    
     private String idPembuatan;
-    
     private String bangsaPejantan;
-    
     private String produsen;
-    
     private String inseminator;
 
     public String getIdVaksin() {

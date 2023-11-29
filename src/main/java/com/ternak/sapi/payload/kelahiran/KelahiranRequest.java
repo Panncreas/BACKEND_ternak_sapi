@@ -1,15 +1,18 @@
 package com.ternak.sapi.payload.kelahiran;
 
+
 import com.ternak.sapi.model.Peternak;
+import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
 public class KelahiranRequest {
-    
+    @Id
     private String idKejadian;
 
     private String tanggalLaporan;
     private String tanggalLahir;
     private String lokasi;
+    
     private Peternak idPeternak;
     private String kartuTernakInduk;
     private String eartagInduk;
@@ -84,6 +87,14 @@ public class KelahiranRequest {
         this.idPejantanStraw = idPejantanStraw;
     }
 
+    public Peternak getIdPeternak() {
+        return idPeternak;
+    }
+
+    public void setIdPeternak(Peternak idPeternak) {
+        this.idPeternak = idPeternak;
+    }
+
     public String getJenisKelaminAnak() {
         return jenisKelaminAnak;
     }
@@ -132,13 +143,6 @@ public class KelahiranRequest {
         this.lokasi = lokasi;
     }
 
-    public Peternak getIdPeternak() {
-        return idPeternak;
-    }
-
-    public void setIdPeternak(Peternak idPeternak) {
-        this.idPeternak = idPeternak;
-    }
     public String getPetugasPelapor() {
         return petugasPelapor;
     }

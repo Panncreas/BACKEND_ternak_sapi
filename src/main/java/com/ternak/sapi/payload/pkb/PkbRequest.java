@@ -1,19 +1,17 @@
 package com.ternak.sapi.payload.pkb;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ternak.sapi.model.Peternak;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import com.ternak.sapi.payload.kelahiran.*;
+import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 
 public class PkbRequest {
+    @Id
     private String idKejadian;
     private String tanggalPkb;
     private String lokasi;
-    
     private Peternak idPeternak;
-    
     private String idHewan;
     private String spesies;
     private String kategori;
@@ -36,8 +34,6 @@ public class PkbRequest {
     public void setIdPeternak(Peternak idPeternak) {
         this.idPeternak = idPeternak;
     }
-
-   
 
     public String getJumlah() {
         return jumlah;
@@ -63,8 +59,6 @@ public class PkbRequest {
         this.lokasi = lokasi;
     }
 
-    
-
     public String getIdHewan() {
         return idHewan;
     }
@@ -73,7 +67,6 @@ public class PkbRequest {
         this.idHewan = idHewan;
     }
 
-    
     public String getPemeriksaKebuntingan() {
         return pemeriksaKebuntingan;
     }

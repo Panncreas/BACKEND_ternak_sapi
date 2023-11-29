@@ -10,6 +10,7 @@ com\ternak\sapi\payload\hewan\HewanResponse.class
 com\ternak\sapi\model\Kandang.class
 com\ternak\sapi\model\Role.class
 com\ternak\sapi\controller\InseminasiController.class
+com\ternak\sapi\payload\geoloc\GeolocRequest.class
 com\ternak\sapi\repository\KelahiranRepository.class
 com\ternak\sapi\service\KandangService.class
 com\ternak\sapi\controller\PengobatanController.class
@@ -18,6 +19,7 @@ com\ternak\sapi\repository\PetugasRepository.class
 com\ternak\sapi\payload\hewan\HewanRequest.class
 com\ternak\sapi\controller\PetugasController.class
 com\ternak\sapi\security\JwtAuthenticationEntryPoint.class
+com\ternak\sapi\model\Geoloc.class
 com\ternak\sapi\payload\kelahiran\KelahiranRequest.class
 com\ternak\sapi\model\Petugas.class
 com\ternak\sapi\payload\UserSummary.class
@@ -30,6 +32,7 @@ com\ternak\sapi\controller\UserController.class
 com\ternak\sapi\model\User.class
 com\ternak\sapi\model\audit\DateAudit.class
 com\ternak\sapi\model\Vaksin.class
+com\ternak\sapi\payload\geoloc\GeolocResponse.class
 com\ternak\sapi\payload\UploadFileResponse.class
 com\ternak\sapi\payload\UserIdentityAvailability.class
 com\ternak\sapi\payload\SignUpRequest.class
@@ -54,6 +57,7 @@ com\ternak\sapi\controller\AuthController.class
 com\ternak\sapi\model\Hewan.class
 com\ternak\sapi\exception\MyFileNotFoundException.class
 com\ternak\sapi\model\Pengobatan.class
+com\ternak\sapi\service\GeolocService.class
 com\ternak\sapi\exception\AppException.class
 com\ternak\sapi\service\PengobatanService.class
 com\ternak\sapi\repository\VaksinRepository.class
@@ -63,6 +67,7 @@ com\ternak\sapi\service\UserService.class
 com\ternak\sapi\service\VaksinService.class
 com\ternak\sapi\payload\UserResponse.class
 com\ternak\sapi\payload\pkb\PkbRequest.class
+com\ternak\sapi\repository\GeolocRepository.class
 com\ternak\sapi\payload\kandang\KandangRequest.class
 com\ternak\sapi\repository\KandangRepository.class
 com\ternak\sapi\config\AuditingConfig.class
@@ -86,6 +91,7 @@ com\ternak\sapi\service\PeternakService.class
 com\ternak\sapi\payload\PagedResponse.class
 com\ternak\sapi\service\KelahiranService.class
 com\ternak\sapi\payload\petugas\PetugasRequest.class
+com\ternak\sapi\controller\GeolocController.class
 com\ternak\sapi\payload\pengobatan\PengobatanRequest.class
 com\ternak\sapi\security\JwtTokenProvider.class
 com\ternak\sapi\model\Pkb.class

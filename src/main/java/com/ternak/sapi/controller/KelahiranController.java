@@ -38,7 +38,7 @@ public class KelahiranController {
     private static final Logger logger = LoggerFactory.getLogger(KelahiranController.class);
 
     @GetMapping
-    @Secured({"ROLE_ADMINISTRATOR" , "ROLE_LECTURE"})
+    @Secured("ROLE_ADMINISTRATOR")
     public PagedResponse<KelahiranResponse> getKelahiran(@RequestParam(value = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
                                                        @RequestParam(value = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size) {
         return kelahiranService.getAllKelahiran(page, size);

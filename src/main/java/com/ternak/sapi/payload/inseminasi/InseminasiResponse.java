@@ -1,6 +1,5 @@
 package com.ternak.sapi.payload.inseminasi;
 
-
 import com.ternak.sapi.model.Peternak;
 import java.time.Instant;
 import javax.persistence.Id;
@@ -28,8 +27,11 @@ public class InseminasiResponse {
     
     public InseminasiResponse() {
     }
-
-    public InseminasiResponse(String idInseminasi, String tanggalIB, String lokasi, Peternak idPeternak, String idHewan, String eartag, String ib1, String ib2, String ib3, String ibLain, String idPejantan, String idPembuatan, String bangsaPejantan, String produsen, String inseminator) {
+    
+    public InseminasiResponse(String idInseminasi, String tanggalIB, String lokasi, Peternak idPeternak,
+            String idHewan, String eartag, String ib1, String ib2, String ib3, String ibLain, String idPejantan, String idPembuatan, String bangsaPejantan, 
+            String produsen, String inseminator) {
+        
         this.idInseminasi = idInseminasi;
         this.tanggalIB = tanggalIB;
         this.lokasi = lokasi;
@@ -46,7 +48,7 @@ public class InseminasiResponse {
         this.produsen = produsen;
         this.inseminator = inseminator;
     }
-    
+
     public String getIdInseminasi() {
         return idInseminasi;
     }
@@ -70,7 +72,7 @@ public class InseminasiResponse {
     public void setLokasi(String lokasi) {
         this.lokasi = lokasi;
     }
-
+    
     public Peternak getIdPeternak() {
         return idPeternak;
     }

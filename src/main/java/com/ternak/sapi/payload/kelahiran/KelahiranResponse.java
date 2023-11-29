@@ -33,7 +33,10 @@ public class KelahiranResponse {
     public KelahiranResponse() {
     }
 
-    public KelahiranResponse(String idKejadian, String tanggalLaporan, String tanggalLahir, String lokasi, Peternak idPeternak, String kartuTernakInduk, String eartagInduk, String idHewanInduk, String spesiesInduk, String idPejantanStraw, String idBatchStraw, String produsenStraw, String spesiesPejantan, String jumlah, String kartuTernakAnak, String eartagAnak, String idHewanAnak, String jenisKelaminAnak, String kategori, String petugasPelapor, String urutanIb, Instant updatedAt, Instant createdAt) {
+    public KelahiranResponse( String idKejadian, String tanggalLaporan, String tanggalLahir, String lokasi, Peternak idPeternak, String kartuTernakInduk, String eartagInduk, String idHewanInduk, 
+            String spesiesInduk, String idPejantanStraw, String idBatchStraw, String produsenStraw, String spesiesPejantan, 
+            String jumlah, String kartuTernakAnak, String eartagAnak, String idHewanAnak, String jenisKelaminAnak, 
+            String kategori, String petugasPelapor, String urutanIb, Instant updatedAt, Instant createdAt) {
         this.idKejadian = idKejadian;
         this.tanggalLaporan = tanggalLaporan;
         this.tanggalLahir = tanggalLahir;
@@ -44,6 +47,7 @@ public class KelahiranResponse {
         this.idHewanInduk = idHewanInduk;
         this.spesiesInduk = spesiesInduk;
         this.idPejantanStraw = idPejantanStraw;
+        this.kartuTernakInduk = kartuTernakInduk;
         this.idBatchStraw = idBatchStraw;
         this.produsenStraw = produsenStraw;
         this.spesiesPejantan = spesiesPejantan;
@@ -51,15 +55,12 @@ public class KelahiranResponse {
         this.kartuTernakAnak = kartuTernakAnak;
         this.eartagAnak = eartagAnak;
         this.idHewanAnak = idHewanAnak;
-        this.jenisKelaminAnak = jenisKelaminAnak;
         this.kategori = kategori;
         this.petugasPelapor = petugasPelapor;
         this.urutanIb = urutanIb;
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
     }
-
-    
 
     public String getEartagAnak() {
         return eartagAnak;
@@ -117,6 +118,14 @@ public class KelahiranResponse {
         this.idPejantanStraw = idPejantanStraw;
     }
 
+    public Peternak getIdPeternak() {
+        return idPeternak;
+    }
+
+    public void setIdPeternak(Peternak idPeternak) {
+        this.idPeternak = idPeternak;
+    }
+
     public String getJenisKelaminAnak() {
         return jenisKelaminAnak;
     }
@@ -165,14 +174,6 @@ public class KelahiranResponse {
         this.lokasi = lokasi;
     }
 
-    public Peternak getIdPeternak() {
-        return idPeternak;
-    }
-
-    public void setIdPeternak(Peternak idPeternak) {
-        this.idPeternak = idPeternak;
-    }
-
     public String getPetugasPelapor() {
         return petugasPelapor;
     }
@@ -180,6 +181,8 @@ public class KelahiranResponse {
     public void setPetugasPelapor(String petugasPelapor) {
         this.petugasPelapor = petugasPelapor;
     }
+    
+    
 
     public String getProdusenStraw() {
         return produsenStraw;

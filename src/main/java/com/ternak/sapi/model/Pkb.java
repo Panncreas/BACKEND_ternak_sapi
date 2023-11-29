@@ -21,7 +21,6 @@ public class Pkb extends UserDateAudit {
     @JoinColumn(name = "idPeternak", nullable = false)
     @JsonIgnore
     private Peternak idPeternak;
-    
     private String idHewan;
     private String spesies;
     private String kategori;
@@ -36,7 +35,9 @@ public class Pkb extends UserDateAudit {
         this.idKejadian = idKejadian;
     }
 
-    public Pkb(String idKejadian, String tanggalPkb, String lokasi, Peternak idPeternak, String idHewan, String spesies, String kategori, String jumlah, String umurKebuntingan, String pemeriksaKebuntingan) {
+    public Pkb( String idKejadian, String tanggalPkb, String lokasi, Peternak idPeternak,  String idHewan, 
+            String spesies, String jumlah, String kategori, String umurKebuntingan, String pemeriksaKebuntingan) {
+        
         this.idKejadian = idKejadian;
         this.tanggalPkb = tanggalPkb;
         this.lokasi = lokasi;
@@ -49,6 +50,7 @@ public class Pkb extends UserDateAudit {
         this.pemeriksaKebuntingan = pemeriksaKebuntingan;
     }
 
+
     public String getIdKejadian() {
         return idKejadian;
     }
@@ -57,15 +59,6 @@ public class Pkb extends UserDateAudit {
         this.idKejadian = idKejadian;
     }
 
-    public Peternak getIdPeternak() {
-        return idPeternak;
-    }
-
-    public void setIdPeternak(Peternak idPeternak) {
-        this.idPeternak = idPeternak;
-    }
-
-    
     public String getJumlah() {
         return jumlah;
     }
@@ -90,7 +83,16 @@ public class Pkb extends UserDateAudit {
         this.lokasi = lokasi;
     }
 
+    public Peternak getIdPeternak() {
+        return idPeternak;
+    }
 
+    public void setIdPeternak(Peternak idPeternak) {
+        this.idPeternak = idPeternak;
+    }
+    
+    
+    
     public String getIdHewan() {
         return idHewan;
     }
@@ -98,7 +100,6 @@ public class Pkb extends UserDateAudit {
     public void setIdHewan(String idHewan) {
         this.idHewan = idHewan;
     }
-
 
     public String getPemeriksaKebuntingan() {
         return pemeriksaKebuntingan;

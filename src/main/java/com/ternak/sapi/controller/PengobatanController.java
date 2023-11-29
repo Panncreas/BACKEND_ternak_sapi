@@ -38,7 +38,7 @@ public class PengobatanController {
     private static final Logger logger = LoggerFactory.getLogger(PengobatanController.class);
 
     @GetMapping
-    @Secured({"ROLE_ADMINISTRATOR" , "ROLE_LECTURE"})
+    @Secured("ROLE_ADMINISTRATOR")
     public PagedResponse<PengobatanResponse> getPengobatan(@RequestParam(value = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
                                                        @RequestParam(value = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size) {
         return pengobatanService.getAllPengobatan(page, size);

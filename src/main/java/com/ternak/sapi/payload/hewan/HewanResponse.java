@@ -16,6 +16,7 @@ public class HewanResponse {
     private String kabupaten;
     private String kecamatan;
     private String desa;
+    private String alamat;
     private Peternak idPeternak;
     private String spesies;
     private String sex;
@@ -38,7 +39,7 @@ public class HewanResponse {
     }
     
     public HewanResponse( String kodeEartagNasional, String noKartuTernakTernak, String provinsi, String kabupaten, String kecamatan,
-                        String desa,Peternak idPeternak, String spesies, String sex, String umur, 
+                        String desa,String alamat, Peternak idPeternak, String spesies, String sex, String umur, 
                         String identifikasiHewan, String petugasPendaftar, Instant updatedAt, Instant createdAt, String fotoHewan, String fotoType, byte[] data, 
                         String latitude, String longitude) {
         
@@ -49,6 +50,7 @@ public class HewanResponse {
         this.kabupaten = kabupaten;
         this.kecamatan = kecamatan;
         this.desa = desa;
+        this.alamat = alamat;
         this.idPeternak = idPeternak;
         this.spesies = spesies;
         this.sex = sex;
@@ -114,6 +116,14 @@ public class HewanResponse {
         this.desa = desa;
     }
 
+    public String getAlamat() {
+        return alamat;
+    }
+
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
+    }
+    
     public Peternak getIdPeternak() {
         return idPeternak;
     }

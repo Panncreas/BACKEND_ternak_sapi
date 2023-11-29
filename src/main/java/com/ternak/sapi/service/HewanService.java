@@ -78,6 +78,7 @@ public class HewanService {
             hewanResponse.setKabupaten(asResponse.getKabupaten());
             hewanResponse.setKecamatan(asResponse.getKecamatan());
             hewanResponse.setDesa(asResponse.getDesa());
+            hewanResponse.setAlamat(asResponse.getAlamat());
             hewanResponse.setIdPeternak(asResponse.getIdPeternak());
             hewanResponse.setSpesies(asResponse.getSpesies());
             hewanResponse.setSex(asResponse.getSex());
@@ -107,6 +108,7 @@ public class HewanService {
         hewan.setKabupaten(hewanRequest.getKabupaten());
         hewan.setKecamatan(hewanRequest.getKecamatan());
         hewan.setDesa(hewanRequest.getDesa());
+        hewan.setAlamat(hewanRequest.getAlamat());
         hewan.setIdPeternak(hewanRequest.getIdPeternak());
         hewan.setSpesies(hewanRequest.getSpesies());
         hewan.setSex(hewanRequest.getSex());
@@ -153,6 +155,7 @@ public class HewanService {
         hewanResponse.setKabupaten(hewan.getKabupaten());
         hewanResponse.setKecamatan(hewan.getKecamatan());
         hewanResponse.setDesa(hewan.getDesa());
+        hewanResponse.setAlamat(hewan.getAlamat());
         hewanResponse.setIdPeternak(hewan.getIdPeternak());
         hewanResponse.setSpesies(hewan.getSpesies());
         hewanResponse.setSex(hewan.getSex());
@@ -206,6 +209,7 @@ public class HewanService {
             hewan.setKabupaten(hewanReq.getKabupaten());
             hewan.setKecamatan(hewanReq.getKecamatan());
             hewan.setDesa(hewanReq.getDesa());
+            hewan.setAlamat(hewanReq.getAlamat());
             hewan.setIdPeternak(hewanReq.getIdPeternak());
             hewan.setSpesies(hewanReq.getSpesies());
             hewan.setSex(hewanReq.getSex());
