@@ -38,7 +38,7 @@ public class VaksinController {
     private static final Logger logger = LoggerFactory.getLogger(VaksinController.class);
 
     @GetMapping
-    @Secured("ROLE_ADMINISTRATOR")
+    @Secured({"ROLE_ADMINISTRATOR" , "ROLE_LECTURE"})
     public PagedResponse<VaksinResponse> getVaksin(@RequestParam(value = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
                                                        @RequestParam(value = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size) {
         return vaksinService.getAllVaksin(page, size);

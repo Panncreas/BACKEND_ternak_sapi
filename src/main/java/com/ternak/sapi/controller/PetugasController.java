@@ -38,7 +38,7 @@ public class PetugasController {
     private static final Logger logger = LoggerFactory.getLogger(PetugasController.class);
 
     @GetMapping
-    @Secured({"ROLE_ADMINISTRATOR" , "ROLE_LECTURE"})
+    @Secured({"ROLE_ADMINISTRATOR"})
     public PagedResponse<PetugasResponse> getPetugas(@RequestParam(value = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
                                                        @RequestParam(value = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size) {
         return petugasService.getAllPetugas(page, size);
