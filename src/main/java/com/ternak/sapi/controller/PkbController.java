@@ -38,14 +38,14 @@ public class PkbController {
     private static final Logger logger = LoggerFactory.getLogger(PkbController.class);
 
     @GetMapping
-    @Secured({"ROLE_ADMINISTRATOR" , "ROLE_LECTURE"})
+    @Secured({"ROLE_ADMINISTRATOR" , "ROLE_PETUGAS", "ROLE_PETERNAK"})
     public PagedResponse<PkbResponse> getPkb(@RequestParam(value = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
                                                        @RequestParam(value = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size) {
         return pkbService.getAllPkb(page, size);
     }
 
     @PostMapping
-    @Secured("ROLE_ADMINISTRATOR")
+    @Secured({"ROLE_ADMINISTRATOR", "ROLE_PETUGAS"})
     public ResponseEntity<?> createPkb(@CurrentUser UserPrincipal currentUser, @Valid @RequestBody PkbRequest pkbRequest) {
         Pkb pkb = pkbService.createPkb(currentUser, pkbRequest);
 
@@ -58,7 +58,7 @@ public class PkbController {
     }
 
     @PutMapping("/{pkbId}")
-    @Secured("ROLE_ADMINISTRATOR")
+    @Secured({"ROLE_ADMINISTRATOR", "ROLE_PETUGAS"})
     public ResponseEntity<?> updatePkbById(@CurrentUser UserPrincipal currentUser, @PathVariable (value = "pkbId") String pkbId, @Valid @RequestBody PkbRequest pkbRequest) {
         Pkb pkb = pkbService.updatePkb(pkbRequest, pkbId, currentUser);
 
@@ -71,13 +71,13 @@ public class PkbController {
     }
 
     @GetMapping("/{pkbId}")
-    @Secured("ROLE_ADMINISTRATOR")
+    @Secured({"ROLE_ADMINISTRATOR" , "ROLE_PETUGAS", "ROLE_PETERNAK"})
     public PkbResponse getPkbById(@PathVariable String pkbId) {
         return pkbService.getPkbById(pkbId);
     }
 
     @DeleteMapping("/{pkbId}")
-    @Secured("ROLE_ADMINISTRATOR")
+    @Secured({"ROLE_ADMINISTRATOR", "ROLE_PETUGAS"})
     public HttpStatus deletePkb(@PathVariable (value = "pkbId") String pkbId){
         pkbService.deletePkbById(pkbId);
         return HttpStatus.FORBIDDEN;

@@ -71,7 +71,7 @@ public class PetugasController {
     }
 
     @GetMapping("/{petugasId}")
-    @Secured("ROLE_ADMINISTRATOR")
+    @Secured({"ROLE_ADMINISTRATOR", "ROLE_PETUGAS"})
     public PetugasResponse getPetugasById(@PathVariable String petugasId) {
         return petugasService.getPetugasById(petugasId);
     }

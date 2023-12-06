@@ -38,14 +38,14 @@ public class KelahiranController {
     private static final Logger logger = LoggerFactory.getLogger(KelahiranController.class);
 
     @GetMapping
-    @Secured({"ROLE_ADMINISTRATOR" , "ROLE_LECTURE"})
+    @Secured({"ROLE_ADMINISTRATOR" , "ROLE_PETUGAS", "ROLE_PETERNAK"})
     public PagedResponse<KelahiranResponse> getKelahiran(@RequestParam(value = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
                                                        @RequestParam(value = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size) {
         return kelahiranService.getAllKelahiran(page, size);
     }
 
     @PostMapping
-    @Secured("ROLE_ADMINISTRATOR")
+    @Secured({"ROLE_ADMINISTRATOR", "ROLE_PETUGAS"})
     public ResponseEntity<?> createKelahiran(@CurrentUser UserPrincipal currentUser, @Valid @RequestBody KelahiranRequest kelahiranRequest) {
         Kelahiran kelahiran = kelahiranService.createKelahiran(currentUser, kelahiranRequest);
 
@@ -58,7 +58,7 @@ public class KelahiranController {
     }
 
     @PutMapping("/{kelahiranId}")
-    @Secured("ROLE_ADMINISTRATOR")
+    @Secured({"ROLE_ADMINISTRATOR", "ROLE_PETUGAS"})
     public ResponseEntity<?> updateKelahiranById(@CurrentUser UserPrincipal currentUser, @PathVariable (value = "kelahiranId") String kelahiranId, @Valid @RequestBody KelahiranRequest kelahiranRequest) {
         Kelahiran kelahiran = kelahiranService.updateKelahiran(kelahiranRequest, kelahiranId, currentUser);
 
@@ -71,13 +71,13 @@ public class KelahiranController {
     }
 
     @GetMapping("/{kelahiranId}")
-    @Secured("ROLE_ADMINISTRATOR")
+    @Secured({"ROLE_ADMINISTRATOR" , "ROLE_PETUGAS", "ROLE_PETERNAK"})
     public KelahiranResponse getKelahiranById(@PathVariable String kelahiranId) {
         return kelahiranService.getKelahiranById(kelahiranId);
     }
 
     @DeleteMapping("/{kelahiranId}")
-    @Secured("ROLE_ADMINISTRATOR")
+    @Secured({"ROLE_ADMINISTRATOR", "ROLE_PETUGAS"})
     public HttpStatus deleteKelahiran(@PathVariable (value = "kelahiranId") String kelahiranId){
         kelahiranService.deleteKelahiranById(kelahiranId);
         return HttpStatus.FORBIDDEN;

@@ -38,14 +38,14 @@ public class VaksinController {
     private static final Logger logger = LoggerFactory.getLogger(VaksinController.class);
 
     @GetMapping
-    @Secured({"ROLE_ADMINISTRATOR" , "ROLE_LECTURE"})
+    @Secured({"ROLE_ADMINISTRATOR" , "ROLE_PETUGAS", "ROLE_PETERNAK"})
     public PagedResponse<VaksinResponse> getVaksin(@RequestParam(value = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
                                                        @RequestParam(value = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size) {
         return vaksinService.getAllVaksin(page, size);
     }
 
     @PostMapping
-    @Secured("ROLE_ADMINISTRATOR")
+    @Secured({"ROLE_ADMINISTRATOR", "ROLE_PETUGAS"})
     public ResponseEntity<?> createVaksin(@CurrentUser UserPrincipal currentUser, @Valid @RequestBody VaksinRequest vaksinRequest) {
         Vaksin vaksin = vaksinService.createVaksin(currentUser, vaksinRequest);
 
@@ -58,7 +58,7 @@ public class VaksinController {
     }
 
     @PutMapping("/{vaksinId}")
-    @Secured("ROLE_ADMINISTRATOR")
+    @Secured({"ROLE_ADMINISTRATOR", "ROLE_PETUGAS"})
     public ResponseEntity<?> updateVaksinById(@CurrentUser UserPrincipal currentUser, @PathVariable (value = "vaksinId") String vaksinId, @Valid @RequestBody VaksinRequest vaksinRequest) {
         Vaksin vaksin = vaksinService.updateVaksin(vaksinRequest, vaksinId, currentUser);
 
@@ -71,13 +71,13 @@ public class VaksinController {
     }
 
     @GetMapping("/{vaksinId}")
-    @Secured("ROLE_ADMINISTRATOR")
+    @Secured({"ROLE_ADMINISTRATOR" , "ROLE_PETUGAS", "ROLE_PETERNAK"})
     public VaksinResponse getVaksinById(@PathVariable String vaksinId) {
         return vaksinService.getVaksinById(vaksinId);
     }
 
     @DeleteMapping("/{vaksinId}")
-    @Secured("ROLE_ADMINISTRATOR")
+    @Secured({"ROLE_ADMINISTRATOR", "ROLE_PETUGAS"})
     public HttpStatus deleteVaksin(@PathVariable (value = "vaksinId") String vaksinId){
         vaksinService.deleteVaksinById(vaksinId);
         return HttpStatus.FORBIDDEN;

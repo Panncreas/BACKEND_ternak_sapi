@@ -40,14 +40,14 @@ public class KandangController {
     private static final Logger logger = LoggerFactory.getLogger(KandangController.class);
 
     @GetMapping
-    @Secured({"ROLE_ADMINISTRATOR" , "ROLE_LECTURE"})
+    @Secured({"ROLE_ADMINISTRATOR" , "ROLE_PETUGAS", "ROLE_PETERNAK"})
     public PagedResponse<KandangResponse> getKandang(@RequestParam(value = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
                                                        @RequestParam(value = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size) {
         return kandangService.getAllKandang(page, size);
     }
 
     @PostMapping
-    @Secured("ROLE_ADMINISTRATOR")
+    @Secured({"ROLE_ADMINISTRATOR", "ROLE_PETUGAS"})
     public ResponseEntity<?> createKandang(@CurrentUser UserPrincipal currentUser, @Valid @ModelAttribute KandangRequest kandangRequest, 
             @RequestParam(value = "file", required = false) MultipartFile file) throws IOException{
         Kandang kandang = kandangService.createKandang(currentUser, kandangRequest, file);
@@ -61,7 +61,7 @@ public class KandangController {
     }
 
     @PutMapping("/{kandangId}")
-    @Secured("ROLE_ADMINISTRATOR")
+    @Secured({"ROLE_ADMINISTRATOR", "ROLE_PETUGAS"})
     public ResponseEntity<?> updateKandangById(@CurrentUser UserPrincipal currentUser, @PathVariable (value = "kandangId") String kandangId, @Valid KandangRequest kandangRequest,
             @RequestParam(value = "file", required = false) MultipartFile file) throws IOException {
         Kandang kandang = kandangService.updateKandang(kandangRequest, kandangId, currentUser, file);
@@ -75,13 +75,13 @@ public class KandangController {
     }
 
     @GetMapping("/{kandangId}")
-    @Secured("ROLE_ADMINISTRATOR")
+    @Secured({"ROLE_ADMINISTRATOR", "ROLE_PETUGAS", "ROLE_PETERNAK"})
     public KandangResponse getKandangById(@PathVariable String kandangId) {
         return kandangService.getKandangById(kandangId);
     }
 
     @DeleteMapping("/{kandangId}")
-    @Secured("ROLE_ADMINISTRATOR")
+    @Secured({"ROLE_ADMINISTRATOR", "ROLE_PETUGAS"})
     public HttpStatus deleteKandang(@PathVariable (value = "kandangId") String kandangId){
         kandangService.deleteKandangById(kandangId);
         return HttpStatus.FORBIDDEN;

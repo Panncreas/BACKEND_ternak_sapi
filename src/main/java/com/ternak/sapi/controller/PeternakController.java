@@ -38,7 +38,7 @@ public class PeternakController {
     private static final Logger logger = LoggerFactory.getLogger(PeternakController.class);
 
     @GetMapping
-    @Secured({"ROLE_ADMINISTRATOR" , "ROLE_LECTURE"})
+    @Secured("ROLE_ADMINISTRATOR")
     public PagedResponse<PeternakResponse> getPeternak(@RequestParam(value = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
                                                            @RequestParam(value = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size) {
         return peternakService.getAllPeternak(page, size);
@@ -71,7 +71,7 @@ public class PeternakController {
     }
 
     @GetMapping("/{peternakId}")
-    @Secured("ROLE_ADMINISTRATOR")
+    @Secured({"ROLE_ADMINISTRATOR", "ROLE_PETERNAK"})
     public PeternakResponse getPeternakById(@PathVariable String peternakId) {
         return peternakService.getPeternakById(peternakId);
     }

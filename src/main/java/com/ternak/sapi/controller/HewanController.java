@@ -40,7 +40,7 @@ public class HewanController {
     private static final Logger logger = LoggerFactory.getLogger(HewanController.class);
 
     @GetMapping
-    @Secured({"ROLE_ADMINISTRATOR" , "ROLE_LECTURE"})
+    @Secured({"ROLE_ADMINISTRATOR" , "ROLE_PETUGAS", "ROLE_PETERNAK"})
     public PagedResponse<HewanResponse> getHewan(@RequestParam(value = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
                                                            @RequestParam(value = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size) {
         return hewanService.getAllHewan(page, size);
@@ -48,7 +48,7 @@ public class HewanController {
 
     //diganti request
 @PostMapping
-@Secured("ROLE_ADMINISTRATOR")
+@Secured({"ROLE_ADMINISTRATOR", "ROLE_PETUGAS"})
 public ResponseEntity<?> createHewan(
         @CurrentUser UserPrincipal currentUser,@Valid @ModelAttribute HewanRequest hewanRequest, @RequestParam(value = "file", required = false) MultipartFile file
         )throws IOException {
@@ -63,7 +63,7 @@ public ResponseEntity<?> createHewan(
 
 
 @PutMapping("/{hewanId}")
-@Secured("ROLE_ADMINISTRATOR")
+@Secured({"ROLE_ADMINISTRATOR", "ROLE_PETUGAS"})
  public ResponseEntity<?> updateKandangById(@CurrentUser UserPrincipal currentUser, @PathVariable (value = "hewanId") String hewanId, @Valid HewanRequest hewanRequest,
  @RequestParam(value = "file", required = false) MultipartFile file)throws IOException {
         Hewan hewan = hewanService.updateHewan(hewanRequest, hewanId, currentUser, file);
@@ -77,13 +77,13 @@ public ResponseEntity<?> createHewan(
     }
 
     @GetMapping("/{hewanId}")
-    @Secured("ROLE_ADMINISTRATOR")
+    @Secured({"ROLE_ADMINISTRATOR", "ROLE_PETUGAS", "ROLE_PETERNAK"})
     public HewanResponse getHewanById(@PathVariable String hewanId) {
         return hewanService.getHewanById(hewanId);
     }
 
     @DeleteMapping("/{hewanId}")
-    @Secured("ROLE_ADMINISTRATOR")
+    @Secured({"ROLE_ADMINISTRATOR", "ROLE_PETUGAS"})
     public HttpStatus deleteHewan(@PathVariable (value = "hewanId") String hewanId){
         hewanService.deleteHewanById(hewanId);
         return HttpStatus.FORBIDDEN;

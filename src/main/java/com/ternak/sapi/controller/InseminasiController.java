@@ -38,14 +38,14 @@ public class InseminasiController {
     private static final Logger logger = LoggerFactory.getLogger(InseminasiController.class);
 
     @GetMapping
-    @Secured({"ROLE_ADMINISTRATOR" , "ROLE_LECTURE"})
+    @Secured({"ROLE_ADMINISTRATOR" , "ROLE_PETUGAS", "ROLE_PETERNAK"})
     public PagedResponse<InseminasiResponse> getInseminasi(@RequestParam(value = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
                                                        @RequestParam(value = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size) {
         return inseminasiService.getAllInseminasi(page, size);
     }
 
     @PostMapping
-    @Secured("ROLE_ADMINISTRATOR")
+    @Secured({"ROLE_ADMINISTRATOR", "ROLE_PETUGAS"})
     public ResponseEntity<?> createInseminasi(@CurrentUser UserPrincipal currentUser, @Valid @RequestBody InseminasiRequest inseminasiRequest) {
         Inseminasi inseminasi = inseminasiService.createInseminasi(currentUser, inseminasiRequest);
 
@@ -58,7 +58,7 @@ public class InseminasiController {
     }
 
     @PutMapping("/{inseminasiId}")
-    @Secured("ROLE_ADMINISTRATOR")
+    @Secured({"ROLE_ADMINISTRATOR", "ROLE_PETUGAS"})
     public ResponseEntity<?> updateInseminasiById(@CurrentUser UserPrincipal currentUser, @PathVariable (value = "inseminasiId") String inseminasiId, @Valid @RequestBody InseminasiRequest inseminasiRequest) {
         Inseminasi inseminasi = inseminasiService.updateInseminasi(inseminasiRequest, inseminasiId, currentUser);
 
@@ -71,13 +71,13 @@ public class InseminasiController {
     }
 
     @GetMapping("/{inseminasiId}")
-    @Secured("ROLE_ADMINISTRATOR")
+    @Secured({"ROLE_ADMINISTRATOR" , "ROLE_PETUGAS", "ROLE_PETERNAK"})
     public InseminasiResponse getInseminasiById(@PathVariable String inseminasiId) {
         return inseminasiService.getInseminasiById(inseminasiId);
     }
 
     @DeleteMapping("/{inseminasiId}")
-    @Secured("ROLE_ADMINISTRATOR")
+    @Secured({"ROLE_ADMINISTRATOR", "ROLE_PETUGAS"})
     public HttpStatus deleteInseminasi(@PathVariable (value = "inseminasiId") String inseminasiId){
         inseminasiService.deleteInseminasiById(inseminasiId);
         return HttpStatus.FORBIDDEN;
