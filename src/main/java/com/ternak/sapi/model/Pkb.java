@@ -21,7 +21,10 @@ public class Pkb extends UserDateAudit {
     @JoinColumn(name = "idPeternak", nullable = false)
     @JsonIgnore
     private Peternak idPeternak;
-    private String idHewan;
+    @ManyToOne
+    @JoinColumn(name = "idHewan", nullable = false)
+    @JsonIgnore
+    private Hewan idHewan;
     private String spesies;
     private String kategori;
     private String jumlah;
@@ -35,7 +38,7 @@ public class Pkb extends UserDateAudit {
         this.idKejadian = idKejadian;
     }
 
-    public Pkb( String idKejadian, String tanggalPkb, String lokasi, Peternak idPeternak,  String idHewan, 
+    public Pkb( String idKejadian, String tanggalPkb, String lokasi, Peternak idPeternak,  Hewan idHewan, 
             String spesies, String jumlah, String kategori, String umurKebuntingan, String pemeriksaKebuntingan) {
         
         this.idKejadian = idKejadian;
@@ -91,13 +94,11 @@ public class Pkb extends UserDateAudit {
         this.idPeternak = idPeternak;
     }
     
-    
-    
-    public String getIdHewan() {
+    public Hewan getIdHewan() {
         return idHewan;
     }
 
-    public void setIdHewan(String idHewan) {
+    public void setIdHewan(Hewan idHewan) {
         this.idHewan = idHewan;
     }
 

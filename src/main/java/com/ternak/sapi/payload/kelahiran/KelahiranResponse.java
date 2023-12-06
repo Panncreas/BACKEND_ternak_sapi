@@ -1,7 +1,7 @@
 package com.ternak.sapi.payload.kelahiran;
 
-
 import com.ternak.sapi.model.Peternak;
+import com.ternak.sapi.model.Hewan;
 import java.time.Instant;
 import javax.validation.constraints.NotBlank;
 
@@ -13,7 +13,7 @@ public class KelahiranResponse {
     private Peternak idPeternak;
     private String kartuTernakInduk;
     private String eartagInduk;
-    private String idHewanInduk;
+    private Hewan idHewan;
     private String spesiesInduk;
     private String idPejantanStraw;
     private String idBatchStraw;
@@ -33,8 +33,8 @@ public class KelahiranResponse {
     public KelahiranResponse() {
     }
 
-    public KelahiranResponse( String idKejadian, String tanggalLaporan, String tanggalLahir, String lokasi, Peternak idPeternak, String kartuTernakInduk, String eartagInduk, String idHewanInduk, 
-            String spesiesInduk, String idPejantanStraw, String idBatchStraw, String produsenStraw, String spesiesPejantan, 
+    public KelahiranResponse( String idKejadian, String tanggalLaporan, String tanggalLahir, String lokasi, Peternak idPeternak, String kartuTernakInduk, 
+            String eartagInduk, Hewan idHewan, String spesiesInduk, String idPejantanStraw, String idBatchStraw, String produsenStraw, String spesiesPejantan, 
             String jumlah, String kartuTernakAnak, String eartagAnak, String idHewanAnak, String jenisKelaminAnak, 
             String kategori, String petugasPelapor, String urutanIb, Instant updatedAt, Instant createdAt) {
         this.idKejadian = idKejadian;
@@ -44,7 +44,7 @@ public class KelahiranResponse {
         this.idPeternak = idPeternak;
         this.kartuTernakInduk = kartuTernakInduk;
         this.eartagInduk = eartagInduk;
-        this.idHewanInduk = idHewanInduk;
+        this.idHewan = idHewan;
         this.spesiesInduk = spesiesInduk;
         this.idPejantanStraw = idPejantanStraw;
         this.kartuTernakInduk = kartuTernakInduk;
@@ -94,12 +94,12 @@ public class KelahiranResponse {
         this.idHewanAnak = idHewanAnak;
     }
 
-    public String getIdHewanInduk() {
-        return idHewanInduk;
+    public Hewan getIdHewan() {
+        return idHewan;
     }
 
-    public void setIdHewanInduk(String idHewanInduk) {
-        this.idHewanInduk = idHewanInduk;
+    public void setIdHewan(Hewan idHewan) {
+        this.idHewan = idHewan;
     }
 
     public String getIdKejadian() {

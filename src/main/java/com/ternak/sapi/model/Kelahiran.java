@@ -21,9 +21,14 @@ public class Kelahiran extends UserDateAudit {
     @JoinColumn(name = "idPeternak", nullable = false)
     @JsonIgnore
     private Peternak idPeternak;
+    
+    @ManyToOne
+    @JoinColumn(name = "idHewan", nullable = false)
+    @JsonIgnore
+    private Hewan idHewan;
+    
     private String kartuTernakInduk;
     private String eartagInduk;
-    private String idHewanInduk;
     private String spesiesInduk;
     private String idPejantanStraw;
     private String idBatchStraw;
@@ -45,7 +50,7 @@ public class Kelahiran extends UserDateAudit {
         this.idKejadian = idKejadian;
     }
 
-    public Kelahiran( String idKejadian, String tanggalLaporan, String tanggalLahir, String lokasi, Peternak idPeternak, String kartuTernakInduk, String eartagInduk, String idHewanInduk, 
+    public Kelahiran( String idKejadian, String tanggalLaporan, String tanggalLahir, String lokasi, Peternak idPeternak, String kartuTernakInduk, String eartagInduk, Hewan idHewan, 
             String spesiesInduk, String idPejantanStraw, String idBatchStraw, String produsenStraw, String spesiesPejantan, 
             String jumlah, String kartuTernakAnak, String eartagAnak, String idHewanAnak, String jenisKelaminAnak, 
             String kategori, String petugasPelapor, String urutanIb) {
@@ -56,7 +61,7 @@ public class Kelahiran extends UserDateAudit {
         this.idPeternak = idPeternak;
         this.kartuTernakInduk = kartuTernakInduk;
         this.eartagInduk = eartagInduk;
-        this.idHewanInduk = idHewanInduk;
+        this.idHewan = idHewan;
         this.spesiesInduk = spesiesInduk;
         this.idPejantanStraw = idPejantanStraw;
         this.idBatchStraw = idBatchStraw;
@@ -106,12 +111,12 @@ public class Kelahiran extends UserDateAudit {
         this.idHewanAnak = idHewanAnak;
     }
 
-    public String getIdHewanInduk() {
-        return idHewanInduk;
+    public Hewan getIdHewan() {
+        return idHewan;
     }
 
-    public void setIdHewanInduk(String idHewanInduk) {
-        this.idHewanInduk = idHewanInduk;
+    public void setIdHewan(Hewan idHewan) {
+        this.idHewan = idHewan;
     }
 
     public String getIdKejadian() {

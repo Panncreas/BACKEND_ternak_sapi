@@ -2,6 +2,7 @@ package com.ternak.sapi.payload.hewan;
 
 
 import com.ternak.sapi.model.Peternak;
+import com.ternak.sapi.model.Kandang;
 
 import javax.persistence.Id;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,6 +18,7 @@ public class HewanRequest {
     private String desa;
     private String alamat;
     private Peternak idPeternak;
+    private Kandang idKandang;
     private String spesies;
     private String sex;
     private String umur;
@@ -98,6 +100,14 @@ public class HewanRequest {
 
     public void setIdPeternak(Peternak idPeternak) {
         this.idPeternak = idPeternak;
+    }
+
+    public Kandang getIdKandang() {
+        return idKandang;
+    }
+
+    public void setIdKandang(Kandang idKandang) {
+        this.idKandang = idKandang;
     }
 
     public String getSpesies() {

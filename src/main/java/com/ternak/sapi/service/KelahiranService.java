@@ -51,7 +51,7 @@ public class KelahiranService {
             kelahiranResponse.setIdPeternak(asResponse.getIdPeternak());
             kelahiranResponse.setKartuTernakInduk(asResponse.getKartuTernakInduk());
             kelahiranResponse.setEartagInduk(asResponse.getEartagInduk());
-            kelahiranResponse.setIdHewanInduk(asResponse.getIdHewanInduk());
+            kelahiranResponse.setIdHewan(asResponse.getIdHewan());
             kelahiranResponse.setSpesiesInduk(asResponse.getSpesiesInduk());
             kelahiranResponse.setIdPejantanStraw(asResponse.getIdPejantanStraw());
             kelahiranResponse.setIdBatchStraw(asResponse.getIdBatchStraw());
@@ -83,7 +83,7 @@ public class KelahiranService {
         kelahiran.setIdPeternak(kelahiranRequest.getIdPeternak());
         kelahiran.setKartuTernakInduk(kelahiranRequest.getKartuTernakInduk());
         kelahiran.setEartagInduk(kelahiranRequest.getEartagInduk());
-        kelahiran.setIdHewanInduk(kelahiranRequest.getIdHewanInduk());
+        kelahiran.setIdHewan(kelahiranRequest.getIdHewan());
         kelahiran.setSpesiesInduk(kelahiranRequest.getSpesiesInduk());
         kelahiran.setIdPejantanStraw(kelahiranRequest.getIdPejantanStraw());
         kelahiran.setIdBatchStraw(kelahiranRequest.getIdBatchStraw());
@@ -114,7 +114,7 @@ public class KelahiranService {
         kelahiranResponse.setIdPeternak(kelahiran.getIdPeternak());
         kelahiranResponse.setKartuTernakInduk(kelahiran.getKartuTernakInduk());
         kelahiranResponse.setEartagInduk(kelahiran.getEartagInduk());
-        kelahiranResponse.setIdHewanInduk(kelahiran.getIdHewanInduk());
+        kelahiranResponse.setIdHewan(kelahiran.getIdHewan());
         kelahiranResponse.setSpesiesInduk(kelahiran.getSpesiesInduk());
         kelahiranResponse.setIdPejantanStraw(kelahiran.getIdPejantanStraw());
         kelahiranResponse.setIdBatchStraw(kelahiran.getIdBatchStraw());
@@ -152,7 +152,7 @@ public class KelahiranService {
             kelahiran.setIdPeternak(kelahiranReq.getIdPeternak());
             kelahiran.setKartuTernakInduk(kelahiranReq.getKartuTernakInduk());
             kelahiran.setEartagInduk(kelahiranReq.getEartagInduk());
-            kelahiran.setIdHewanInduk(kelahiranReq.getIdHewanInduk());
+            kelahiran.setIdHewan(kelahiranReq.getIdHewan());
             kelahiran.setSpesiesInduk(kelahiranReq.getSpesiesInduk());
             kelahiran.setIdPejantanStraw(kelahiranReq.getIdPejantanStraw());
             kelahiran.setIdBatchStraw(kelahiranReq.getIdBatchStraw());

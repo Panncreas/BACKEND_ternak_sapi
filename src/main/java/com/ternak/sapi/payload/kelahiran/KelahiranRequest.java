@@ -2,6 +2,7 @@ package com.ternak.sapi.payload.kelahiran;
 
 
 import com.ternak.sapi.model.Peternak;
+import com.ternak.sapi.model.Hewan;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
@@ -16,7 +17,7 @@ public class KelahiranRequest {
     private Peternak idPeternak;
     private String kartuTernakInduk;
     private String eartagInduk;
-    private String idHewanInduk;
+    private Hewan idHewan;
     private String spesiesInduk;
     private String idPejantanStraw;
     private String idBatchStraw;
@@ -63,12 +64,12 @@ public class KelahiranRequest {
         this.idHewanAnak = idHewanAnak;
     }
 
-    public String getIdHewanInduk() {
-        return idHewanInduk;
+    public Hewan getIdHewan() {
+        return idHewan;
     }
 
-    public void setIdHewanInduk(String idHewanInduk) {
-        this.idHewanInduk = idHewanInduk;
+    public void setIdHewan(Hewan idHewan) {
+        this.idHewan = idHewan;
     }
 
     public String getIdKejadian() {

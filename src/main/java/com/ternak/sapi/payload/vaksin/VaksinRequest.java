@@ -1,6 +1,7 @@
 package com.ternak.sapi.payload.vaksin;
 
 
+import com.ternak.sapi.model.Hewan;
 import com.ternak.sapi.model.Peternak;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
@@ -12,7 +13,7 @@ public class VaksinRequest {
     private String tanggalIB;
     private String lokasi;
     private Peternak idPeternak;
-    private String idHewan;
+    private Hewan idHewan;
     private String eartag;
     private String ib1;
     private String ib2;
@@ -56,11 +57,11 @@ public class VaksinRequest {
         this.idPeternak = idPeternak;
     }
 
-    public String getIdHewan() {
+    public Hewan getIdHewan() {
         return idHewan;
     }
 
-    public void setIdHewan(String idHewan) {
+    public void setIdHewan(Hewan idHewan) {
         this.idHewan = idHewan;
     }
 

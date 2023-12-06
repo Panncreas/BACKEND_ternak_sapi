@@ -1,6 +1,7 @@
 package com.ternak.sapi.payload.pkb;
 
 
+import com.ternak.sapi.model.Hewan;
 import com.ternak.sapi.model.Peternak;
 import com.ternak.sapi.payload.pkb.*;
 import java.time.Instant;
@@ -11,7 +12,7 @@ public class PkbResponse {
     private String tanggalPkb;
     private String lokasi;
     private Peternak idPeternak;
-    private String idHewan;
+    private Hewan idHewan;
     private String spesies;
     private String kategori;
     private String jumlah;
@@ -60,11 +61,11 @@ public class PkbResponse {
         this.lokasi = lokasi;
     }
 
-    public String getIdHewan() {
+    public Hewan getIdHewan() {
         return idHewan;
     }
 
-    public void setIdHewan(String idHewan) {
+    public void setIdHewan(Hewan idHewan) {
         this.idHewan = idHewan;
     }
 
