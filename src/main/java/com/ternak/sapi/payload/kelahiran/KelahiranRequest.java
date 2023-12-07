@@ -17,7 +17,7 @@ public class KelahiranRequest {
     private Peternak idPeternak;
     private String kartuTernakInduk;
     private String eartagInduk;
-    private Hewan idHewan;
+    private Hewan kodeEartagNasional;
     private String spesiesInduk;
     private String idPejantanStraw;
     private String idBatchStraw;
@@ -64,12 +64,12 @@ public class KelahiranRequest {
         this.idHewanAnak = idHewanAnak;
     }
 
-    public Hewan getIdHewan() {
-        return idHewan;
+    public Hewan getKodeEartagNasional() {
+        return kodeEartagNasional;
     }
 
-    public void setIdHewan(Hewan idHewan) {
-        this.idHewan = idHewan;
+    public void setKodeEartagNasional(Hewan kodeEartagNasional) {
+        this.kodeEartagNasional = kodeEartagNasional;
     }
 
     public String getIdKejadian() {

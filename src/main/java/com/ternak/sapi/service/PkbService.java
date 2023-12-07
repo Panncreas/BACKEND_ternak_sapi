@@ -48,7 +48,7 @@ public class PkbService {
             pkbResponse.setTanggalPkb(asResponse.getTanggalPkb());
             pkbResponse.setLokasi(asResponse.getLokasi());
             pkbResponse.setIdPeternak(asResponse.getIdPeternak());
-            pkbResponse.setIdHewan(asResponse.getIdHewan());
+            pkbResponse.setKodeEartagNasional(asResponse.getKodeEartagNasional());
             pkbResponse.setSpesies(asResponse.getSpesies());
             pkbResponse.setKategori(asResponse.getKategori());
             pkbResponse.setJumlah(asResponse.getJumlah());
@@ -69,7 +69,7 @@ public class PkbService {
         pkb.setTanggalPkb(pkbRequest.getTanggalPkb());
         pkb.setLokasi(pkbRequest.getLokasi());
         pkb.setIdPeternak(pkbRequest.getIdPeternak());
-        pkb.setIdHewan(pkbRequest.getIdHewan());
+        pkb.setKodeEartagNasional(pkbRequest.getKodeEartagNasional());
         pkb.setSpesies(pkbRequest.getSpesies());
         pkb.setKategori(pkbRequest.getKategori());
         pkb.setJumlah(pkbRequest.getJumlah());
@@ -89,7 +89,7 @@ public class PkbService {
         pkbResponse.setTanggalPkb(pkb.getTanggalPkb());
         pkbResponse.setLokasi(pkb.getLokasi());
         pkbResponse.setIdPeternak(pkb.getIdPeternak());
-        pkbResponse.setIdHewan(pkb.getIdHewan());
+        pkbResponse.setKodeEartagNasional(pkb.getKodeEartagNasional());
         pkbResponse.setSpesies(pkb.getSpesies());
         pkbResponse.setKategori(pkb.getKategori());
         pkbResponse.setJumlah(pkb.getJumlah());
@@ -116,7 +116,7 @@ public class PkbService {
             pkb.setTanggalPkb(pkbReq.getTanggalPkb());
             pkb.setLokasi(pkbReq.getLokasi());
             pkb.setIdPeternak(pkbReq.getIdPeternak());
-            pkb.setIdHewan(pkbReq.getIdHewan());
+            pkb.setKodeEartagNasional(pkbReq.getKodeEartagNasional());
             pkb.setSpesies(pkbReq.getSpesies());
             pkb.setKategori(pkbReq.getKategori());
             pkb.setJumlah(pkbReq.getJumlah());

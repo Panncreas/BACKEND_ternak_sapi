@@ -12,7 +12,7 @@ public class PkbResponse {
     private String tanggalPkb;
     private String lokasi;
     private Peternak idPeternak;
-    private Hewan idHewan;
+    private Hewan kodeEartagNasional;
     private String spesies;
     private String kategori;
     private String jumlah;
@@ -61,12 +61,12 @@ public class PkbResponse {
         this.lokasi = lokasi;
     }
 
-    public Hewan getIdHewan() {
-        return idHewan;
+    public Hewan getKodeEartagNasional() {
+        return kodeEartagNasional;
     }
 
-    public void setIdHewan(Hewan idHewan) {
-        this.idHewan = idHewan;
+    public void setKodeEartagNasional(Hewan kodeEartagNasional) {
+        this.kodeEartagNasional = kodeEartagNasional;
     }
 
     public String getPemeriksaKebuntingan() {

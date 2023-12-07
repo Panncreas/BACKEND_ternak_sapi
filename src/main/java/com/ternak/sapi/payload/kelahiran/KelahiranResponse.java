@@ -13,7 +13,7 @@ public class KelahiranResponse {
     private Peternak idPeternak;
     private String kartuTernakInduk;
     private String eartagInduk;
-    private Hewan idHewan;
+    private Hewan kodeEartagNasional;
     private String spesiesInduk;
     private String idPejantanStraw;
     private String idBatchStraw;
@@ -34,7 +34,7 @@ public class KelahiranResponse {
     }
 
     public KelahiranResponse( String idKejadian, String tanggalLaporan, String tanggalLahir, String lokasi, Peternak idPeternak, String kartuTernakInduk, 
-            String eartagInduk, Hewan idHewan, String spesiesInduk, String idPejantanStraw, String idBatchStraw, String produsenStraw, String spesiesPejantan, 
+            String eartagInduk, Hewan kodeEartagNasional, String spesiesInduk, String idPejantanStraw, String idBatchStraw, String produsenStraw, String spesiesPejantan, 
             String jumlah, String kartuTernakAnak, String eartagAnak, String idHewanAnak, String jenisKelaminAnak, 
             String kategori, String petugasPelapor, String urutanIb, Instant updatedAt, Instant createdAt) {
         this.idKejadian = idKejadian;
@@ -44,7 +44,7 @@ public class KelahiranResponse {
         this.idPeternak = idPeternak;
         this.kartuTernakInduk = kartuTernakInduk;
         this.eartagInduk = eartagInduk;
-        this.idHewan = idHewan;
+        this.kodeEartagNasional = kodeEartagNasional;
         this.spesiesInduk = spesiesInduk;
         this.idPejantanStraw = idPejantanStraw;
         this.kartuTernakInduk = kartuTernakInduk;
@@ -94,12 +94,12 @@ public class KelahiranResponse {
         this.idHewanAnak = idHewanAnak;
     }
 
-    public Hewan getIdHewan() {
-        return idHewan;
+    public Hewan getKodeEartagNasional() {
+        return kodeEartagNasional;
     }
 
-    public void setIdHewan(Hewan idHewan) {
-        this.idHewan = idHewan;
+    public void setKodeEartagNasional(Hewan kodeEartagNasional) {
+        this.kodeEartagNasional = kodeEartagNasional;
     }
 
     public String getIdKejadian() {

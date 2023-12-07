@@ -23,9 +23,9 @@ public class Kelahiran extends UserDateAudit {
     private Peternak idPeternak;
     
     @ManyToOne
-    @JoinColumn(name = "idHewan", nullable = false)
+    @JoinColumn(name = "kodeEartagNasional", nullable = false)
     @JsonIgnore
-    private Hewan idHewan;
+    private Hewan kodeEartagNasional;
     
     private String kartuTernakInduk;
     private String eartagInduk;
@@ -50,10 +50,10 @@ public class Kelahiran extends UserDateAudit {
         this.idKejadian = idKejadian;
     }
 
-    public Kelahiran( String idKejadian, String tanggalLaporan, String tanggalLahir, String lokasi, Peternak idPeternak, String kartuTernakInduk, String eartagInduk, Hewan idHewan, 
-            String spesiesInduk, String idPejantanStraw, String idBatchStraw, String produsenStraw, String spesiesPejantan, 
-            String jumlah, String kartuTernakAnak, String eartagAnak, String idHewanAnak, String jenisKelaminAnak, 
-            String kategori, String petugasPelapor, String urutanIb) {
+    public Kelahiran( String idKejadian, String tanggalLaporan, String tanggalLahir, String lokasi, Peternak idPeternak, 
+            String kartuTernakInduk, String eartagInduk, Hewan kodeEartagNasional, String spesiesInduk, String idPejantanStraw, 
+            String idBatchStraw, String produsenStraw, String spesiesPejantan, String jumlah, String kartuTernakAnak, 
+            String eartagAnak, String idHewanAnak, String jenisKelaminAnak, String kategori, String petugasPelapor, String urutanIb) {
         this.idKejadian = idKejadian;
         this.tanggalLaporan = tanggalLaporan;
         this.tanggalLahir = tanggalLahir;
@@ -61,7 +61,7 @@ public class Kelahiran extends UserDateAudit {
         this.idPeternak = idPeternak;
         this.kartuTernakInduk = kartuTernakInduk;
         this.eartagInduk = eartagInduk;
-        this.idHewan = idHewan;
+        this.kodeEartagNasional = kodeEartagNasional;
         this.spesiesInduk = spesiesInduk;
         this.idPejantanStraw = idPejantanStraw;
         this.idBatchStraw = idBatchStraw;
@@ -111,12 +111,12 @@ public class Kelahiran extends UserDateAudit {
         this.idHewanAnak = idHewanAnak;
     }
 
-    public Hewan getIdHewan() {
-        return idHewan;
+    public Hewan getKodeEartagNasional() {
+        return kodeEartagNasional;
     }
 
-    public void setIdHewan(Hewan idHewan) {
-        this.idHewan = idHewan;
+    public void setKodeEartagNasional(Hewan kodeEartagNasional) {
+        this.kodeEartagNasional = kodeEartagNasional;
     }
 
     public String getIdKejadian() {

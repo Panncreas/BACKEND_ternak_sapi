@@ -11,8 +11,7 @@ public class VaksinResponse {
     private String tanggalIB;
     private String lokasi;
     private Peternak idPeternak;
-    private Hewan idHewan;
-    private String eartag;
+    private Hewan kodeEartagNasional;
     private String ib1;
     private String ib2;
     private String ib3;
@@ -29,15 +28,14 @@ public class VaksinResponse {
     }
     
     public VaksinResponse(String idVaksin, String tanggalIB, String lokasi, Peternak idPeternak,
-            Hewan idHewan, String eartag, String ib1, String ib2, String ib3, String ibLain, String idPejantan, String idPembuatan, String bangsaPejantan, 
+            Hewan kodeEartagNasional, String ib1, String ib2, String ib3, String ibLain, String idPejantan, String idPembuatan, String bangsaPejantan, 
             String produsen, String inseminator) {
         
         this.idVaksin = idVaksin;
         this.tanggalIB = tanggalIB;
         this.lokasi = lokasi;
         this.idPeternak = idPeternak;
-        this.idHewan = idHewan;
-        this.eartag = eartag;
+        this.kodeEartagNasional = kodeEartagNasional;
         this.ib1 = ib1;
         this.ib2 = ib2;
         this.ib3 = ib3;
@@ -80,21 +78,13 @@ public class VaksinResponse {
     public void setIdPeternak(Peternak idPeternak) {
         this.idPeternak = idPeternak;
     }
-    
-    public Hewan getIdHewan() {
-        return idHewan;
+
+    public Hewan getKodeEartagNasional() {
+        return kodeEartagNasional;
     }
 
-    public void setIdHewan(Hewan idHewan) {
-        this.idHewan = idHewan;
-    }
-
-    public String getEartag() {
-        return eartag;
-    }
-
-    public void setEartag(String eartag) {
-        this.eartag = eartag;
+    public void setKodeEartagNasional(Hewan kodeEartagNasional) {
+        this.kodeEartagNasional = kodeEartagNasional;
     }
     
     public String getIb1() {

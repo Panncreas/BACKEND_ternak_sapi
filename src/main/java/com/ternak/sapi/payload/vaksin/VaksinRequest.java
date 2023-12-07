@@ -13,8 +13,7 @@ public class VaksinRequest {
     private String tanggalIB;
     private String lokasi;
     private Peternak idPeternak;
-    private Hewan idHewan;
-    private String eartag;
+    private Hewan kodeEartagNasional;
     private String ib1;
     private String ib2;
     private String ib3;
@@ -57,20 +56,12 @@ public class VaksinRequest {
         this.idPeternak = idPeternak;
     }
 
-    public Hewan getIdHewan() {
-        return idHewan;
+    public Hewan getKodeEartagNasional() {
+        return kodeEartagNasional;
     }
 
-    public void setIdHewan(Hewan idHewan) {
-        this.idHewan = idHewan;
-    }
-
-    public String getEartag() {
-        return eartag;
-    }
-
-    public void setEartag(String eartag) {
-        this.eartag = eartag;
+    public void setKodeEartagNasional(Hewan kodeEartagNasional) {
+        this.kodeEartagNasional = kodeEartagNasional;
     }
     
     public String getIb1() {

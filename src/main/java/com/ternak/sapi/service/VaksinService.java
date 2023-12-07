@@ -48,8 +48,7 @@ public class VaksinService {
             vaksinResponse.setTanggalIB(asResponse.getTanggalIB());
             vaksinResponse.setLokasi(asResponse.getLokasi());
             vaksinResponse.setIdPeternak(asResponse.getIdPeternak());
-            vaksinResponse.setIdHewan(asResponse.getIdHewan());
-            vaksinResponse.setEartag(asResponse.getEartag());
+            vaksinResponse.setKodeEartagNasional(asResponse.getKodeEartagNasional());
             vaksinResponse.setIb1(asResponse.getIb1());
             vaksinResponse.setIb2(asResponse.getIb2());
             vaksinResponse.setIb3(asResponse.getIb3());
@@ -74,8 +73,7 @@ public class VaksinService {
         vaksin.setTanggalIB(vaksinRequest.getTanggalIB());
         vaksin.setLokasi(vaksinRequest.getLokasi());
         vaksin.setIdPeternak(vaksinRequest.getIdPeternak());
-        vaksin.setIdHewan(vaksinRequest.getIdHewan());
-        vaksin.setEartag(vaksinRequest.getEartag());
+        vaksin.setKodeEartagNasional(vaksinRequest.getKodeEartagNasional());
         vaksin.setIb1(vaksinRequest.getIb1());
         vaksin.setIb2(vaksinRequest.getIb2());
         vaksin.setIb3(vaksinRequest.getIb3());
@@ -99,8 +97,7 @@ public class VaksinService {
         vaksinResponse.setTanggalIB(vaksin.getTanggalIB());
         vaksinResponse.setLokasi(vaksin.getLokasi());
         vaksinResponse.setIdPeternak(vaksin.getIdPeternak());
-        vaksinResponse.setIdHewan(vaksin.getIdHewan());
-        vaksinResponse.setEartag(vaksin.getEartag());
+        vaksinResponse.setKodeEartagNasional(vaksin.getKodeEartagNasional());
         vaksinResponse.setIb1(vaksin.getIb1());
         vaksinResponse.setIb2(vaksin.getIb2());
         vaksinResponse.setIb3(vaksin.getIb3());
@@ -131,8 +128,7 @@ public class VaksinService {
             vaksin.setTanggalIB(vaksinReq.getTanggalIB());
             vaksin.setLokasi(vaksinReq.getLokasi());
             vaksin.setIdPeternak(vaksinReq.getIdPeternak());
-            vaksin.setIdHewan(vaksinReq.getIdHewan());
-            vaksin.setEartag(vaksinReq.getEartag());
+            vaksin.setKodeEartagNasional(vaksinReq.getKodeEartagNasional());
             vaksin.setIb1(vaksinReq.getIb1());
             vaksin.setIb2(vaksinReq.getIb2());
             vaksin.setIb3(vaksinReq.getIb3());

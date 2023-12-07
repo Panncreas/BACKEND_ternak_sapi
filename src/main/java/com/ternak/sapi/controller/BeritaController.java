@@ -22,6 +22,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import com.ternak.sapi.repository.BeritaRepository;
+import java.io.IOException;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/berita")
@@ -38,7 +40,7 @@ public class BeritaController {
     private static final Logger logger = LoggerFactory.getLogger(BeritaController.class);
 
     @GetMapping
-    @Secured({"ROLE_ADMINISTRATOR" , "ROLE_LECTURE"})
+    @Secured("ROLE_ADMINISTRATOR")
     public PagedResponse<BeritaResponse> getBerita(@RequestParam(value = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
                                                        @RequestParam(value = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size) {
         return beritaService.getAllBerita(page, size);
@@ -46,8 +48,9 @@ public class BeritaController {
 
     @PostMapping
     @Secured("ROLE_ADMINISTRATOR")
-    public ResponseEntity<?> createBerita(@CurrentUser UserPrincipal currentUser, @Valid @RequestBody BeritaRequest beritaRequest) {
-        Berita berita = beritaService.createBerita(currentUser, beritaRequest);
+    public ResponseEntity<?> createBerita(@CurrentUser UserPrincipal currentUser, @Valid @ModelAttribute BeritaRequest beritaRequest,
+            @RequestParam(value = "file", required = false) MultipartFile file) throws IOException{
+        Berita berita = beritaService.createBerita(currentUser, beritaRequest, file);
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{beritaId}")
@@ -59,8 +62,9 @@ public class BeritaController {
 
     @PutMapping("/{beritaId}")
     @Secured("ROLE_ADMINISTRATOR")
-    public ResponseEntity<?> updateBeritaById(@CurrentUser UserPrincipal currentUser, @PathVariable (value = "beritaId") Long beritaId, @Valid @RequestBody BeritaRequest beritaRequest) {
-        Berita berita = beritaService.updateBerita(beritaRequest, beritaId, currentUser);
+    public ResponseEntity<?> updateBeritaById(@CurrentUser UserPrincipal currentUser, @PathVariable (value = "beritaId") Long beritaId, @Valid @ModelAttribute BeritaRequest beritaRequest,
+            @RequestParam(value = "file", required = false) MultipartFile file) throws IOException{
+        Berita berita = beritaService.updateBerita(beritaRequest, beritaId, currentUser, file);
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{beritaId}")

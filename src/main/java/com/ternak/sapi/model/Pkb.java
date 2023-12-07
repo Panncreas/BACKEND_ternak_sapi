@@ -22,9 +22,9 @@ public class Pkb extends UserDateAudit {
     @JsonIgnore
     private Peternak idPeternak;
     @ManyToOne
-    @JoinColumn(name = "idHewan", nullable = false)
+    @JoinColumn(name = "kodeEartagNasional", nullable = false)
     @JsonIgnore
-    private Hewan idHewan;
+    private Hewan kodeEartagNasional;
     private String spesies;
     private String kategori;
     private String jumlah;
@@ -38,14 +38,14 @@ public class Pkb extends UserDateAudit {
         this.idKejadian = idKejadian;
     }
 
-    public Pkb( String idKejadian, String tanggalPkb, String lokasi, Peternak idPeternak,  Hewan idHewan, 
+    public Pkb( String idKejadian, String tanggalPkb, String lokasi, Peternak idPeternak,  Hewan kodeEartagNasional, 
             String spesies, String jumlah, String kategori, String umurKebuntingan, String pemeriksaKebuntingan) {
         
         this.idKejadian = idKejadian;
         this.tanggalPkb = tanggalPkb;
         this.lokasi = lokasi;
         this.idPeternak = idPeternak;
-        this.idHewan = idHewan;
+        this.kodeEartagNasional = kodeEartagNasional;
         this.spesies = spesies;
         this.kategori = kategori;
         this.jumlah = jumlah;
@@ -93,13 +93,13 @@ public class Pkb extends UserDateAudit {
     public void setIdPeternak(Peternak idPeternak) {
         this.idPeternak = idPeternak;
     }
-    
-    public Hewan getIdHewan() {
-        return idHewan;
+
+    public Hewan getKodeEartagNasional() {
+        return kodeEartagNasional;
     }
 
-    public void setIdHewan(Hewan idHewan) {
-        this.idHewan = idHewan;
+    public void setKodeEartagNasional(Hewan kodeEartagNasional) {
+        this.kodeEartagNasional = kodeEartagNasional;
     }
 
     public String getPemeriksaKebuntingan() {

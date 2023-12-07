@@ -48,8 +48,7 @@ public class InseminasiService {
             inseminasiResponse.setTanggalIB(asResponse.getTanggalIB());
             inseminasiResponse.setLokasi(asResponse.getLokasi());
             inseminasiResponse.setIdPeternak(asResponse.getIdPeternak());
-            inseminasiResponse.setIdHewan(asResponse.getIdHewan());
-            inseminasiResponse.setEartag(asResponse.getEartag());
+            inseminasiResponse.setKodeEartagNasional(asResponse.getKodeEartagNasional());
             inseminasiResponse.setIb1(asResponse.getIb1());
             inseminasiResponse.setIb2(asResponse.getIb2());
             inseminasiResponse.setIb3(asResponse.getIb3());
@@ -74,8 +73,7 @@ public class InseminasiService {
         inseminasi.setTanggalIB(inseminasiRequest.getTanggalIB());
         inseminasi.setLokasi(inseminasiRequest.getLokasi());
         inseminasi.setIdPeternak(inseminasiRequest.getIdPeternak());
-        inseminasi.setIdHewan(inseminasiRequest.getIdHewan());
-        inseminasi.setEartag(inseminasiRequest.getEartag());
+        inseminasi.setKodeEartagNasional(inseminasiRequest.getKodeEartagNasional());
         inseminasi.setIb1(inseminasiRequest.getIb1());
         inseminasi.setIb2(inseminasiRequest.getIb2());
         inseminasi.setIb3(inseminasiRequest.getIb3());
@@ -99,8 +97,7 @@ public class InseminasiService {
         inseminasiResponse.setTanggalIB(inseminasi.getTanggalIB());
         inseminasiResponse.setLokasi(inseminasi.getLokasi());
         inseminasiResponse.setIdPeternak(inseminasi.getIdPeternak());
-        inseminasiResponse.setIdHewan(inseminasi.getIdHewan());
-        inseminasiResponse.setEartag(inseminasi.getEartag());
+        inseminasiResponse.setKodeEartagNasional(inseminasi.getKodeEartagNasional());
         inseminasiResponse.setIb1(inseminasi.getIb1());
         inseminasiResponse.setIb2(inseminasi.getIb2());
         inseminasiResponse.setIb3(inseminasi.getIb3());
@@ -131,8 +128,7 @@ public class InseminasiService {
             inseminasi.setTanggalIB(inseminasiReq.getTanggalIB());
             inseminasi.setLokasi(inseminasiReq.getLokasi());
             inseminasi.setIdPeternak(inseminasiReq.getIdPeternak());
-            inseminasi.setIdHewan(inseminasiReq.getIdHewan());
-            inseminasi.setEartag(inseminasiReq.getEartag());
+            inseminasi.setKodeEartagNasional(inseminasiReq.getKodeEartagNasional());
             inseminasi.setIb1(inseminasiReq.getIb1());
             inseminasi.setIb2(inseminasiReq.getIb2());
             inseminasi.setIb3(inseminasiReq.getIb3());
