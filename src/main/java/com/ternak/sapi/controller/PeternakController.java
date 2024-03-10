@@ -38,14 +38,14 @@ public class PeternakController {
     private static final Logger logger = LoggerFactory.getLogger(PeternakController.class);
 
     @GetMapping
-    @Secured("ROLE_ADMINISTRATOR")
+    @Secured({"ROLE_ADMINISTRATOR", "ROLE_PETUGAS", "ROLE_PETERNAK"})
     public PagedResponse<PeternakResponse> getPeternak(@RequestParam(value = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
                                                            @RequestParam(value = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size) {
         return peternakService.getAllPeternak(page, size);
     }
 
     @PostMapping
-    @Secured("ROLE_ADMINISTRATOR")
+    @Secured({"ROLE_ADMINISTRATOR", "ROLE_PETUGAS"})
     public ResponseEntity<?> createPeternak(@CurrentUser UserPrincipal currentUser, @Valid @RequestBody PeternakRequest peternakRequest) {
         Peternak peternak = peternakService.createPeternak(currentUser, peternakRequest);
 
@@ -58,7 +58,7 @@ public class PeternakController {
     }
 
     @PutMapping("/{peternakId}")
-    @Secured("ROLE_ADMINISTRATOR")
+    @Secured({"ROLE_ADMINISTRATOR", "ROLE_PETUGAS"})
     public ResponseEntity<?> updatePeternakById(@CurrentUser UserPrincipal currentUser, @PathVariable (value = "peternakId") String peternakId, @Valid @RequestBody PeternakRequest peternakRequest) {
         Peternak peternak = peternakService.updatePeternak(peternakRequest, peternakId, currentUser);
 
@@ -71,13 +71,13 @@ public class PeternakController {
     }
 
     @GetMapping("/{peternakId}")
-    @Secured({"ROLE_ADMINISTRATOR", "ROLE_PETERNAK"})
+    @Secured({"ROLE_ADMINISTRATOR", "ROLE_PETUGAS", "ROLE_PETERNAK"})
     public PeternakResponse getPeternakById(@PathVariable String peternakId) {
         return peternakService.getPeternakById(peternakId);
     }
 
     @DeleteMapping("/{peternakId}")
-    @Secured("ROLE_ADMINISTRATOR")
+    @Secured({"ROLE_ADMINISTRATOR", "ROLE_PETUGAS"})
     public HttpStatus deletePeternak(@PathVariable (value = "peternakId") String peternakId){
         peternakService.deletePeternakById(peternakId);
         return HttpStatus.FORBIDDEN;

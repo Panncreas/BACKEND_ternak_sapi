@@ -40,7 +40,7 @@ public class BeritaController {
     private static final Logger logger = LoggerFactory.getLogger(BeritaController.class);
 
     @GetMapping
-    @Secured("ROLE_ADMINISTRATOR")
+    @Secured({"ROLE_ADMINISTRATOR", "ROLE_PETUGAS", "ROLE_PETERNAK"})
     public PagedResponse<BeritaResponse> getBerita(@RequestParam(value = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
                                                        @RequestParam(value = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size) {
         return beritaService.getAllBerita(page, size);
